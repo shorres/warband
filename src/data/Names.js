@@ -31,7 +31,6 @@ export const WizardNames = [
   "Epianne",
   "Eweahl",
   "Olleshann",
-  "Slartybartfast"
 ]
 
 export const SoldierNames = [
