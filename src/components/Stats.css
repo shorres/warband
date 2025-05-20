@@ -1,0 +1,77 @@
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.span-2 {
+  grid-column: 7 / span 2;
+}
+
+@media screen and (max-device-width:640px), screen and (max-width:640px) {
+  .statName--move {
+    overflow: hidden;
+  }
+  .statName--move:before {
+    content: "M";
+  }
+
+  .statName--fight {
+    overflow: hidden;
+  }
+  .statName--fight:before {
+    content: "F";
+  }
+
+  .statName--shoot {
+    overflow: hidden;
+  }
+  .statName--shoot:before {
+    content: "S";
+  }
+
+  .statName--armour {
+    overflow: hidden;
+  }
+  .statName--armour:before {
+    content: "A";
+  }
+
+  .statName--will {
+    overflow: hidden;
+  }
+  .statName--will:before {
+    content: "W";
+  }
+
+  .statName--health {
+    overflow: hidden;
+  }
+  .statName--health:before {
+    content: "H";
+  }
+
+}
+
+.improve {
+  border: 0;
+  position: absolute;
+  height: 1rem;
+  background-color: transparent;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.improve:hover {
+  color: green;
+}
+
+.centered {
+  text-align: center;
+}
+
+.xpField {
+  font-size: 1rem;
+  border: 0;
+  width: 100%;
+  text-align: right;
+}
