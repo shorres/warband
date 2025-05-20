@@ -5,9 +5,9 @@ import './Stats.css';
 import CharacterFeatures from '../data/CharacterFeatures';
 import WizardShape from '../shapes/WizardShape';
 import SoldierShape from '../shapes/SoldierShape';
-import {ARMOUR, BASE, EQUIPMENT, FACTION, KEYWORDS, MELEE, MOVEMENT, RANGED, ATTRIBUTES } from '../data/Misc';
+import {ARMOUR, BASE, EQUIPMENT, FACTION, KEYWORDS, MELEE, MOVEMENT, RANGED, ATTRIBUTES, ABILITIES } from '../data/Misc';
 
-const formatFeatures = abilities => abilities.map(ability => CharacterFeatures[ability].name).join(', ');
+const formatFeatures = features => features.map(feature => CharacterFeatures[feature].name).join(', ');
 
 const formatStat = stat => stat >= 0 ? `+${stat}` : stat === 0 ? stat : `${stat}`;
 
@@ -18,7 +18,7 @@ export const Stats = ({character}) => {
     [RANGED]: ranged,
     [ARMOUR]: armour,
     [BASE]: base,
-    // abilities: ability,
+    [ABILITIES]: abilities,
     [EQUIPMENT]: equipment,
     [KEYWORDS]: keywords,
     [FACTION]: faction,
@@ -32,7 +32,7 @@ export const Stats = ({character}) => {
     <span className="highlight centered statName--abilities">Abilities</span>
     <span className="highlight centered statName--keywords">Keywords</span>
 
-    {/* {abilities && <span className="span-2 highlight">Abilities</span>} */}
+    {abilities && <span className="span-2 highlight">Abilities</span>}
     <span className="centered">
       {movement}
     </span>
@@ -49,9 +49,12 @@ export const Stats = ({character}) => {
       {formatStat(base)}
     </span>
     <span className="centered">
+      {abilities}
+    </span>
+    <span className="centered">
       {keywords}
     </span>
-    {/* {abilities && <span className="span-2">{formatFeatures(abilities)}</span>} */}
+    {abilities && <span className="span-2">{formatFeatures(abilities)}</span>}
   </div>);
 };
 

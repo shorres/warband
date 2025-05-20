@@ -55,14 +55,42 @@ export default {
   },
   [RANGER]: {
     name: 'Ranger',
+    [MOVEMENT]: 5,
+    [MELEE]: 2,
+    [RANGED]: 3,
+    [ARMOUR]: 12,
+    [BASE]: 28,
+    cost: 125,
+    soldierType: RANGER
   },
   [BARBARIAN]: {
     name: 'Barbarian',
+    [MOVEMENT]: 5,
+    [MELEE]: 2,
+    [RANGED]: 3,
+    [ARMOUR]: 12,
+    [BASE]: 28,
+    cost: 125,
+    soldierType: BARBARIAN
   },
   [APOTHECARY]: {
     name: 'Apothecary',
+    [MOVEMENT]: 5,
+    [MELEE]: 2,
+    [RANGED]: 3,
+    [ARMOUR]: 12,
+    [BASE]: 28,
+    cost: 125,
+    soldierType: APOTHECARY
   },
   [MARKSMAN]: {
     name: 'Marksman',
+    [MOVEMENT]: 5,
+    [MELEE]: 2,
+    [RANGED]: 3,
+    [ARMOUR]: 12,
+    [BASE]: 28,
+    cost: 125,
+    soldierType: MARKSMAN
   },
 };
