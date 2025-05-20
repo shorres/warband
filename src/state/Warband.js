@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { ARMOUR, EXPERIENCE, FIGHT, HEALTH, LEVEL, MOVE, SHOOT, WILL } from '../data/Misc';
+import { ABILITIES, ARMOUR, BASE, EQUIPMENT, FACTION, KEYWORDS, MELEE, MOVEMENT, RANGED, ATTRIBUTES } from '../data/Misc';
 
 import { generateSoldierName, generateWizardName } from "../data/Names";
 import Soldiers, { THIEF } from "../data/Soldiers";
@@ -9,16 +9,6 @@ import { CHRONOMANCER } from '../data/WizardTypes';
 export const VERSIONS = {
   V1: "V1",
 };
-
-export const createApprentice = (wizard, name) => ({
-  ...wizard,
-  name,
-  [FIGHT]: wizard[FIGHT] - 2,
-  [SHOOT]: wizard[SHOOT] - 2 > 0 ? wizard[SHOOT] - 2 : 0,
-  [WILL]: wizard[WILL] - 2,
-  [HEALTH]: wizard[HEALTH] - 2,
-  isApprentice: true,
-});
 
 export const addSoldier = (warband, setWarband) => {
   if (warband.soldiers.length === 8) {
@@ -53,20 +43,6 @@ export const setSoldier = (warband, setWarband, newSoldier) => {
 
 export const setWizard = (warband, setWarband, newWizard) => {
   warband.wizard = newWizard;
-  warband.apprentice = createApprentice(newWizard, warband.apprentice.name);
-  setWarband({ ...warband });
-};
-
-export const setApprentice = (warband, setWarband, apprentice) => {
-  warband.apprentice = apprentice;
-  setWarband({ ...warband });
-}
-
-export const levelUp = (warband, setWarband, attribute) => {
-  warband.wizard[attribute] += 1;
-  warband.wizard[LEVEL] += 1;
-  warband.wizard[EXPERIENCE] -= 100;
-  warband.apprentice = createApprentice(warband.wizard, warband.apprentice.name);
   setWarband({ ...warband });
 };
 
