@@ -6,8 +6,8 @@ import { SIGILIST } from './data/WizardTypes';
 import './App.css';
 import Soldier from './components/Soldier';
 import { generateWizardName } from './data/Names';
-import { addSoldier, createApprentice, levelUp, setApprentice, setSoldier, setWizard, undo, useWarband, VERSIONS } from './state/Warband';
-import { ARMOUR, FIGHT, HEALTH, LEVEL, MOVE, SHOOT, WILL, EXPERIENCE } from './data/Misc';
+import { addSoldier, setSoldier, setWizard, undo, useWarband, VERSIONS } from './state/Warband';
+import { ABILITIES, ARMOUR, BASE, EQUIPMENT, FACTION, KEYWORDS, MELEE, MOVEMENT, RANGED, ATTRIBUTES } from './data/Misc';
 import ExportCSVButton from './components/ExportCSVButton';
 
 
@@ -27,16 +27,16 @@ const decodeWarband = (encoded, setWarband) => {
 
 const DEFAULT_WIZARD = {
   name: generateWizardName(),
-  [LEVEL]: 1,
-  [EXPERIENCE]: 0,
   wizardType: SIGILIST,
-  [MOVE]: 6,
-  [FIGHT]: 2,
-  [SHOOT]: 0,
+  [MOVEMENT]: 6,
+  [MELEE]: 2,
+  [RANGED]: 0,
   [ARMOUR]: 10,
-  [HEALTH]: 14,
-  [WILL]: 4,
-  itemLimit: 5,
+  [BASE]: 14,
+  [FACTION]: 4,
+  [EQUIPMENT]: 0,
+  [KEYWORDS]: "TEST",
+  [ABILITIES]: 2
 };
 
 function App() {
@@ -44,12 +44,8 @@ function App() {
   const [firstLoad, setFirstLoad] = useState(true);
 
   const [warband, _setWarband] = useState({
-    wizard: { ...DEFAULT_WIZARD },
-    apprentice: createApprentice(DEFAULT_WIZARD, generateWizardName()),
     soldiers: []
   });
-
-  const [isLevellingUp, setIsLevellingUp] = useState(false);
 
   const warbandCost = warband.soldiers.reduce((sum, soldier) => sum + soldier.cost, 0);
 
@@ -59,7 +55,7 @@ function App() {
   };
 
 const flattenWarbandForCSV = (warband) => {
-  const { wizard, apprentice, soldiers } = warband;
+  const { soldiers } = warband;
 
   // Helper to add a type label
   const withType = (obj, type) => ({ type, ...obj });
@@ -69,8 +65,6 @@ const flattenWarbandForCSV = (warband) => {
 
   // Build the array
   return [
-    withType(clean(wizard), "Wizard"),
-    withType(clean(apprentice), "Apprentice"),
     ...soldiers.map(s => withType(clean(s), "Soldier")),
   ];
 };
@@ -84,23 +78,9 @@ const flattenWarbandForCSV = (warband) => {
     <div className="container">
       <h1 className="title">Trench Crusade</h1>
 
-      <button onClick={() => { setIsLevellingUp(true); }} disabled={isLevellingUp || warband.wizard[EXPERIENCE] < 100}>Level up</button>
-      <button onClick={() => { setIsLevellingUp(false); }} hidden={!isLevellingUp}>Cancel</button>
-      <button onClick={() => { addSoldier(warband, setWarband); }} hidden={isLevellingUp}>Add Soldier</button>
+      <button onClick={() => { addSoldier(warband, setWarband); }}>Add Soldier</button>
       <ExportCSVButton data={flattenWarbandForCSV(warband)} filename="names.csv" />
       <p><b>Warband Cost</b>: {warbandCost}gc</p>
-
-      <Wizard
-        wizard={warband.wizard}
-        setWizard={(w) => { setWizard(warband, setWarband, w); }}
-        isLevellingUp={isLevellingUp}
-        levelUp={(attribute) => {
-          levelUp(warband, setWarband, attribute);
-          setIsLevellingUp(false);
-        }} />
-      <Wizard
-        wizard={warband.apprentice}
-        setWizard={(w) => { setApprentice(warband, setWarband, w); }} />
 
       {warband.soldiers.map(soldier =>
         <Soldier

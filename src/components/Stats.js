@@ -5,91 +5,58 @@ import './Stats.css';
 import CharacterFeatures from '../data/CharacterFeatures';
 import WizardShape from '../shapes/WizardShape';
 import SoldierShape from '../shapes/SoldierShape';
-import { ARMOUR, FEATURES, FIGHT, HEALTH, LEVEL, MOVE, SHOOT, WILL, EXPERIENCE, ATTRIBUTES } from '../data/Misc';
+import {ARMOUR, BASE, EQUIPMENT, FACTION, KEYWORDS, MELEE, MOVEMENT, RANGED, ATTRIBUTES } from '../data/Misc';
 
-const formatFeatures = features => features.map(feature => CharacterFeatures[feature].name).join(', ');
+const formatFeatures = abilities => abilities.map(ability => CharacterFeatures[ability].name).join(', ');
 
 const formatStat = stat => stat >= 0 ? `+${stat}` : stat === 0 ? stat : `${stat}`;
 
-const hasReachedMaximum = (attribute, value) => value >= ATTRIBUTES[attribute].max;
-
-export const Stats = ({ character, isLevellingUp, levelUp, onExperienceChange }) => {
+export const Stats = ({character}) => {
   const {
-    [MOVE]: move,
-    [FIGHT]: fight,
-    [SHOOT]: shoot,
+    [MOVEMENT]: movement,
+    [MELEE]: melee,
+    [RANGED]: ranged,
     [ARMOUR]: armour,
-    [WILL]: will,
-    [HEALTH]: health,
-    [LEVEL]: level,
-    [EXPERIENCE]: experience,
-    [FEATURES]: features,
-    isApprentice } = character;
+    [BASE]: base,
+    // abilities: ability,
+    [EQUIPMENT]: equipment,
+    [KEYWORDS]: keywords,
+    [FACTION]: faction,
+  } = character;
   return (<div className="stats">
-    <span className="highlight centered statName--move">Move</span>
-    <span className="highlight centered statName--fight">Fight</span>
-    <span className="highlight centered statName--shoot">Shoot</span>
+    <span className="highlight centered statName--movement">Movement</span>
+    <span className="highlight centered statName--ranged">Ranged</span>
+    <span className="highlight centered statName--melee">Melee</span>
     <span className="highlight centered statName--armour">Armour</span>
-    <span className="highlight centered statName--will">Will</span>
-    <span className="highlight centered statName--health">Health</span>
+    <span className="highlight centered statName--base">Base</span>
+    <span className="highlight centered statName--abilities">Abilities</span>
+    <span className="highlight centered statName--keywords">Keywords</span>
 
-    {level && !isApprentice && <span className="highlight centered">Level</span>}
-    {typeof experience === 'number' && !isApprentice && <span className="highlight centered">Experience</span>}
-    {isApprentice && <span className="span-2"></span>}
-    {features && <span className="span-2 highlight">Features</span>}
+    {/* {abilities && <span className="span-2 highlight">Abilities</span>} */}
     <span className="centered">
-      {move}
+      {movement}
     </span>
     <span className="centered">
-      {formatStat(fight)}
-      {isLevellingUp && <button
-        hidden={hasReachedMaximum(FIGHT, fight)}
-        onClick={() => levelUp(FIGHT)}
-        className="improve">&#8679;</button>}
+      {formatStat(melee)}
     </span>
     <span className="centered">
-      {formatStat(shoot)}
-      {isLevellingUp && <button
-        hidden={hasReachedMaximum(SHOOT, shoot)}
-        onClick={() => levelUp(SHOOT)}
-        className="improve">&#8679;</button>}
+      {formatStat(ranged)}
     </span>
     <span className="centered">
       {armour}
     </span>
     <span className="centered">
-      {formatStat(will)}
-      {isLevellingUp && <button
-        hidden={hasReachedMaximum(WILL, will)}
-        onClick={() => levelUp(WILL)}
-        className="improve">&#8679;</button>}
+      {formatStat(base)}
     </span>
     <span className="centered">
-      {health}
-      {isLevellingUp && <button
-        hidden={hasReachedMaximum(HEALTH, health)}
-        onClick={() => levelUp(HEALTH)}
-        className="improve">&#8679;</button>}
+      {keywords}
     </span>
-    {level && !isApprentice && <span className="centered">{level}</span>}
-    {typeof experience === 'number' && !isApprentice &&
-      <span className="centered">
-        <input
-          onChange={(event) => onExperienceChange(event.target.value)}
-          type="text"
-          className="xpField"
-          value={experience} />
-      </span>}
-    {isApprentice && <span className="span-2"></span>}
-    {features && <span className="span-2">{formatFeatures(features)}</span>}
+    {/* {abilities && <span className="span-2">{formatFeatures(abilities)}</span>} */}
   </div>);
 };
 
 Stats.propTypes = {
   character: PropTypes.oneOfType([WizardShape, SoldierShape]).isRequired,
-  isLevellingUp: PropTypes.bool,
-  levelUp: PropTypes.func,
-  onExperienceChange: PropTypes.func,
 };
 
 export default Stats;
