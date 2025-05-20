@@ -8,6 +8,8 @@ import Soldier from './components/Soldier';
 import { generateWizardName } from './data/Names';
 import { addSoldier, createApprentice, levelUp, setApprentice, setSoldier, setWizard, undo, useWarband, VERSIONS } from './state/Warband';
 import { ARMOUR, FIGHT, HEALTH, LEVEL, MOVE, SHOOT, WILL, EXPERIENCE } from './data/Misc';
+import ExportCSVButton from './components/ExportCSVButton';
+
 
 const encodeWarband = (warband) => {
   const encoded = btoa(JSON.stringify(warband));
@@ -56,6 +58,23 @@ function App() {
     _setWarband(value);
   };
 
+const flattenWarbandForCSV = (warband) => {
+  const { wizard, apprentice, soldiers } = warband;
+
+  // Helper to add a type label
+  const withType = (obj, type) => ({ type, ...obj });
+
+  // Remove any non-primitive or unwanted fields if needed
+  const clean = ({ uid, ...rest }) => rest;
+
+  // Build the array
+  return [
+    withType(clean(wizard), "Wizard"),
+    withType(clean(apprentice), "Apprentice"),
+    ...soldiers.map(s => withType(clean(s), "Soldier")),
+  ];
+};
+  
   if (firstLoad) {
     decodeWarband(window.location.hash?.replace('#', ''), _setWarband);
     setFirstLoad(false);
@@ -68,6 +87,7 @@ function App() {
       <button onClick={() => { setIsLevellingUp(true); }} disabled={isLevellingUp || warband.wizard[EXPERIENCE] < 100}>Level up</button>
       <button onClick={() => { setIsLevellingUp(false); }} hidden={!isLevellingUp}>Cancel</button>
       <button onClick={() => { addSoldier(warband, setWarband); }} hidden={isLevellingUp}>Add Soldier</button>
+      <ExportCSVButton data={flattenWarbandForCSV(warband)} filename="names.csv" />
       <p><b>Warband Cost</b>: {warbandCost}gc</p>
 
       <Wizard
