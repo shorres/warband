@@ -9,6 +9,7 @@ import { generateWizardName } from './data/Names';
 import { addSoldier, setSoldier, setWizard, undo, useWarband, VERSIONS } from './state/Warband';
 import { ABILITIES, ARMOUR, BASE, EQUIPMENT, FACTION, KEYWORDS, MELEE, MOVEMENT, RANGED, ATTRIBUTES } from './data/Misc';
 import ExportCSVButton from './components/ExportCSVButton';
+import ImportCSVButton from './components/ImportCSVButton';
 
 
 const encodeWarband = (warband) => {
@@ -57,16 +58,11 @@ function App() {
 const flattenWarbandForCSV = (warband) => {
   const { soldiers } = warband;
 
-  // Helper to add a type label
-  const withType = (obj, type) => ({ type, ...obj });
-
-  // Remove any non-primitive or unwanted fields if needed
-  const clean = ({ uid, ...rest }) => rest;
-
-  // Build the array
-  return [
-    ...soldiers.map(s => withType(clean(s), "Soldier")),
-  ];
+  // Export all stats attached to each soldier, including their keys/values
+  return soldiers.map(soldier => ({
+    type: "Soldier",
+    ...soldier
+  }));
 };
   
   if (firstLoad) {
@@ -79,7 +75,23 @@ const flattenWarbandForCSV = (warband) => {
       <h1 className="title">Trench Crusade</h1>
 
       <button onClick={() => { addSoldier(warband, setWarband); }}>Add Soldier</button>
-      <ExportCSVButton data={flattenWarbandForCSV(warband)} filename="names.csv" />
+      <ExportCSVButton data={flattenWarbandForCSV(warband)} filename="warband.csv" />
+      <ImportCSVButton
+            onImport={(importedRows) => {
+              // Transform importedRows to your warband structure as needed
+              // Example: setWarband({ soldiers: importedRows.filter(r => r.type === "Soldier") })
+              // You may need to map/parse fields to match your app's data model
+              setWarband({
+                ...warband,
+                soldiers: importedRows.filter(r => r.type === "Soldier").map(s => ({
+                  ...s,
+                  cost: Number(s.cost) || 0, // Example: parse numbers if needed
+                  // ...add/convert other fields as required
+                })),
+                // Add wizard/apprentice if present in import
+              });
+            }}/>
+      
       <p><b>Warband Cost</b>: {warbandCost}gc</p>
 
       {warband.soldiers.map(soldier =>
