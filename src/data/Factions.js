@@ -6,7 +6,7 @@ export const BLACK_GRAIL = 'The Cult of the Black Grail';
 export const IRON_SULTANATE = 'The Iron Sultanate';
 
 export const factionTypes = [NEW_ANTIOCH, HERETIC_LEGION, SEVEN_HEADED, 
-    TRENCH_PILGRIMS, BLACK_GRAIL, TRENCH_PILGRIMS];
+    TRENCH_PILGRIMS, BLACK_GRAIL, IRON_SULTANATE];
 
 export default{
     [NEW_ANTIOCH]:{
@@ -24,7 +24,7 @@ export default{
     [BLACK_GRAIL]:{
         name:'The Cult of the Black Grail'
     }, 
-    [TRENCH_PILGRIMS]:{
+    [IRON_SULTANATE]:{
         name:'The Iron Sultanate'
     }
 }
