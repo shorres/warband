@@ -26,20 +26,6 @@ const decodeWarband = (encoded, setWarband) => {
   }
 }
 
-const DEFAULT_WIZARD = {
-  name: generateWizardName(),
-  wizardType: SIGILIST,
-  [MOVEMENT]: 6,
-  [MELEE]: 2,
-  [RANGED]: 0,
-  [ARMOUR]: 10,
-  [BASE]: 14,
-  [FACTION]: 4,
-  [EQUIPMENT]: 0,
-  [KEYWORDS]: "TEST",
-  [ABILITIES]: 2
-};
-
 function App() {
 
   const [firstLoad, setFirstLoad] = useState(true);
@@ -73,7 +59,6 @@ const flattenWarbandForCSV = (warband) => {
   return (
     <div className="container">
       <h1 className="title">Trench Crusade</h1>
-
       <button onClick={() => { addSoldier(warband, setWarband); }}>Add Soldier</button>
       <ExportCSVButton data={flattenWarbandForCSV(warband)} filename="warband.csv" />
       <ImportCSVButton
@@ -93,7 +78,6 @@ const flattenWarbandForCSV = (warband) => {
             }}/>
       
       <p><b>Warband Cost</b>: {warbandCost}gc</p>
-
       {warband.soldiers.map(soldier =>
         <Soldier
           key={soldier.uid}
