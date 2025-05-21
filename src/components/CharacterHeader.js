@@ -42,11 +42,11 @@ const SoldierTypeSelector = ({ soldierType, onTypeChange, factionType }) => {
 export const CharacterHeader = ({ name, factionType, soldierType, onNameChange, onTypeChange }) => {
   console.log({ name, factionType, soldierType, onNameChange, onTypeChange });
   return <div className="characterHeader">
-    <span className="blue highlight">{getTitle(soldierType)}</span>
+    <span className="blue highlight">{getTitle(soldierType, factionType)}</span>
     <span className='span-half'><input onChange={(event) => onNameChange(event.target.value)}
       type="text"
       value={name} /></span>
-    {<span className="blue highlight">{getType(soldierType)}</span>}
+    {<span className="blue highlight">{getType(factionType)}</span>}
     {<span><FactionTypeSelector factionType={factionType} onTypeChange={onTypeChange} /></span>}
     <span className="red highlight"></span>
     {<span className='span-full'><SoldierTypeSelector 
