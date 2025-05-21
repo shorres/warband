@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { ABILITIES, ARMOUR, BASE, EQUIPMENT, FACTION, KEYWORDS, MELEE, MOVEMENT, RANGED, ATTRIBUTES } from '../data/Misc';
 
 import { generateSoldierName, generateWizardName } from "../data/Names";
-import Soldiers, { THIEF } from "../data/Soldiers";
+import Soldiers, { TRENCH_PILGRIM } from "../data/Soldiers";
 import { CHRONOMANCER } from '../data/WizardTypes';
 
 export const VERSIONS = {
@@ -15,7 +15,7 @@ export const addSoldier = (warband, setWarband) => {
     return;
   }
   const newSoldier = {
-    ...Soldiers[THIEF],
+    ...Soldiers[TRENCH_PILGRIM],
     uid: uuidv4(),
     name: generateSoldierName(),
   };
@@ -38,11 +38,6 @@ export const setSoldier = (warband, setWarband, newSoldier) => {
     warband.soldiers[soldierIdx] = newSoldier;
   }
 
-  setWarband({ ...warband });
-};
-
-export const setWizard = (warband, setWarband, newWizard) => {
-  warband.wizard = newWizard;
   setWarband({ ...warband });
 };
 
