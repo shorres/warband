@@ -62,7 +62,7 @@ export default {
   },
   [BOW]: {
     name: 'Bow',
-    notes: ':oad and fire as a single action, 24" maximum range'
+    notes: 'Load and fire as a single action, 24" maximum range'
   },
   [UNARMED]: {
     name: 'Unarmed',

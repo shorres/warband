@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import './Stats.css';
 import CharacterFeatures from '../data/CharacterFeatures';
-import WizardShape from '../shapes/WizardShape';
 import SoldierShape from '../shapes/SoldierShape';
 import {ARMOUR, BASE, EQUIPMENT, FACTION, KEYWORDS, MELEE, MOVEMENT, RANGED, ABILITIES } from '../data/Misc';
 
@@ -45,7 +44,6 @@ export const Stats = ({character}) => {
           <th>Ranged</th>
           <th>Armour</th>
           <th>Base</th>
-          <th>Keywords</th>
         </tr>
       </thead>
       <tbody>
@@ -55,7 +53,11 @@ export const Stats = ({character}) => {
           <td>{formatStat(ranged)}</td>
           <td>{armour}</td>
           <td>{base}</td>
-          <td>{keywords}</td>
+        </tr>
+        <tr>
+          <td colSpan={6}>
+            <strong>Keywords:</strong> {formatFeatures(keywords)}
+          </td>
         </tr>
         {abilities && (
           <tr>
