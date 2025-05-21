@@ -66,7 +66,8 @@ export default {
     [ARMOUR]: 23,
     [BASE]: 28,
     [ABILITIES]: [NO_CARRY, LEATHER_ARMOUR],
-    [KEYWORDS]: 'ELITE'
+    [KEYWORDS]: 'ELITE',
+    [FACTION]: [HERETIC_LEGION]
   },
   [HERETIC_DEATH_COMMANDO]: {
     name: 'Heretic Death Commando',
@@ -76,7 +77,8 @@ export default {
     [ARMOUR]: 23,
     [BASE]: 32,
     [ABILITIES]: [TWO_HANDED_WEAPON],
-    [KEYWORDS]: 'ELITE'
+    [KEYWORDS]: 'ELITE',
+    [FACTION]: [HERETIC_LEGION]
   },
   [HERETIC_CHORISTER]: {
     name: 'Heretic Chorister',
@@ -86,135 +88,179 @@ export default {
     [ARMOUR]: 2,
     [BASE]: 28,
     [ABILITIES]: [UNARMED],
-    [KEYWORDS]: 'LIKE REALLY STRAIGHT'
+    [KEYWORDS]: 'LIKE REALLY STRAIGHT',
+    [FACTION]: [HERETIC_LEGION]
   },
   [HERETIC_TROOPER]: {
     name: 'Heretic Trooper',
+    [FACTION]: [HERETIC_LEGION]
   },
   [ANOINTED_HEAVY_INFANTRY]: {
     name: 'Anointed Heavy Infantry',
+    [FACTION]: [HERETIC_LEGION]
   },
   [WAR_WOLF_ASSAULT_BEAST]: {
     name: 'War Wolf Assault Beast',
+    [FACTION]: [HERETIC_LEGION]
   },
   [ARTILLERY_WITCH]: {
     name: 'Artillery Witch',
+    [FACTION]: [HERETIC_LEGION]
   },
   [WRETCHED]: {
     name: 'Wretched',
+    [FACTION]: [HERETIC_LEGION]
   },
   [WAR_PROPHET]: {
     name: 'War Prophet',
+    [FACTION]: [TRENCH_PILGRIMS]
   },
   [CASTIGATOR]: {
     name: 'Castigator',
+    [FACTION]: [TRENCH_PILGRIMS]
   },
   [COMMUNICANT]: {
     name: 'Communicant',
+    [FACTION]: [TRENCH_PILGRIMS]
   },
   [TRENCH_PILGRIM]: {
     name: 'Trench Pilgrim',
+    [FACTION]: [TRENCH_PILGRIMS]
   },
   [ECCLESIASTIC_PRISONER]: {
     name: 'Ecclesiastic Prisoner',
+    [FACTION]: [TRENCH_PILGRIMS]
   },
   [STIGMATIC_NUN]: {
     name: 'Stigmatic Nun',
+    [FACTION]: [TRENCH_PILGRIMS]
   },
   [SHRINE_ANCHORITE]: {
     name: 'Shrine Anchorite',
+    [FACTION]: [TRENCH_PILGRIMS]
   },
   [YUZBASI_CAPTAIN]: {
     name: 'Yuzbasi Captain',
+    [FACTION]: [IRON_SULTANATE]
   },
   [JABIREAN_ALCHEMIST]: {
     name: 'Jabirean Alchemist',
+    [FACTION]: [IRON_SULTANATE]
   },
   [SULTANATE_ASSASSIN]: {
     name: 'Sultanate Assassin',
+    [FACTION]: [IRON_SULTANATE]
   },
   [AZEB]: {
     name: 'Azeb',
+    [FACTION]: [IRON_SULTANATE]
   },
   [SULTANATE_SAPPER]: {
     name: 'Sultanate Sapper',
+    [FACTION]: [IRON_SULTANATE]
   },
   [LION_OF_JABIR]: {
     name: 'Lion of Jabir',
+    [FACTION]: [IRON_SULTANATE]
   },
   [JANISSARIES]: {
     name: 'Janissaries',
+    [FACTION]: [IRON_SULTANATE]
   },
   [BRAZEN_BULL]: {
     name: 'Brazen Bull',
+    [FACTION]: [IRON_SULTANATE]
   },
   [LIEUTENANT]: {
     name: 'Lieutenant',
+    [FACTION]: [NEW_ANTIOCH]
   },
   [TRENCH_CLERIC]: {
     name: 'Trench Cleric',
+    [FACTION]: [NEW_ANTIOCH]
   },
   [YEOMAN]: {
     name: 'Yeoman',
+    [FACTION]: [NEW_ANTIOCH]
   },
   [SHOCKTROOPER]: {
     name: 'Shocktrooper',
+    [FACTION]: [NEW_ANTIOCH]
   },
   [COMBAT_ENGINEER]: {
     name: 'Combat Engineer',
+    [FACTION]: [NEW_ANTIOCH]
   },
   [MECHANIZED_HEAVY_INFANTRY]: {
     name: 'Mechanized Heavy Infantry',
+    [FACTION]: [NEW_ANTIOCH]
   },
   [COMBAT_MEDIC]: {
     name: 'Combat Medic',
+    [FACTION]: [NEW_ANTIOCH]
   },
   [LORD_OF_TUMOURS]: {
     name: 'Lord of Tumours',
+    [FACTION]: [BLACK_GRAIL]
   },
   [PLAGUE_KNIGHT]: {
     name: 'Plague Knight',
+    [FACTION]: [BLACK_GRAIL]
   },
   [CORPSE_GUARD]: {
     name: 'Corpse Guard',
+    [FACTION]: [BLACK_GRAIL]
   },
   [HOUND_OF_THE_BLACK_GRAIL]: {
     name: 'Hound of the Black Grail',
+    [FACTION]: [BLACK_GRAIL]
   },
   [GRAIL_THRALL]: {
     name: 'Grail Thrall',
+    [FACTION]: [BLACK_GRAIL]
   },
   [FLY_THRALL]: {
     name: 'Fly Thrall',
+    [FACTION]: [BLACK_GRAIL]
   },
   [HERALD_OF_BEELZEBUB]: {
     name: 'Herald of Beelzebub',
+    [FACTION]: [BLACK_GRAIL]
   },
   [AMALGAM]: {
     name: 'Amalgam',
+    [FACTION]: [BLACK_GRAIL]
   },
   [PRAETOR]: {
     name: 'Praetor',
+    [FACTION]: [SEVEN_HEADED]
   },
   [SORCERER]: {
     name: 'Sorcerer',
+    [FACTION]: [SEVEN_HEADED]
   },
   [HUNTER_OF_THE_LEFT_HAND_PATH]: {
     name: 'Hunter of the Left Hand Path',
+    [FACTION]: [SEVEN_HEADED]
   },
   [HELL_KNIGHT]: {
     name: 'Hell Knight',
+    [FACTION]: [SEVEN_HEADED]
   },
   [YOKE_FIEND]: {
     name: 'Yoke Fiend',
+    [FACTION]: [SEVEN_HEADED]
   },
   [WRETCH]: {
     name: 'Wretch',
+    [FACTION]: [SEVEN_HEADED]
   },
   [PIT_LOCUST]: {
     name: 'Pit Locust',
+    [FACTION]: [SEVEN_HEADED]
   },
   [DESECRATED_SAINT]: {
     name: 'Desecrated Saint',
+    [FACTION]: [SEVEN_HEADED]
   }
 };
