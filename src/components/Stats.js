@@ -5,10 +5,23 @@ import './Stats.css';
 import CharacterFeatures from '../data/CharacterFeatures';
 import WizardShape from '../shapes/WizardShape';
 import SoldierShape from '../shapes/SoldierShape';
-import {ARMOUR, BASE, EQUIPMENT, FACTION, KEYWORDS, MELEE, MOVEMENT, RANGED, ATTRIBUTES, ABILITIES } from '../data/Misc';
+import {ARMOUR, BASE, EQUIPMENT, FACTION, KEYWORDS, MELEE, MOVEMENT, RANGED, ABILITIES } from '../data/Misc';
 
-const formatFeatures = features => features.map(feature => CharacterFeatures[feature].name).join(', ');
-
+const formatFeatures = abilities => {
+  if (!abilities) return '';
+  if (Array.isArray(abilities)) {
+    return abilities.map(ability => CharacterFeatures[ability]?.name || ability).join(', ');
+  }
+  // If it's a string (from CSV), split by comma and trim
+  if (typeof abilities === 'string') {
+    return abilities
+      .split(',')
+      .map(a => a.trim())
+      .map(ability => CharacterFeatures[ability]?.name || ability)
+      .join(', ');
+  }
+  return '';
+};
 const formatStat = stat => stat >= 0 ? `+${stat}` : stat === 0 ? stat : `${stat}`;
 
 export const Stats = ({character}) => {
@@ -23,43 +36,41 @@ export const Stats = ({character}) => {
     [KEYWORDS]: keywords,
     [FACTION]: faction,
   } = character;
-  return (<div className="stats">
-    <span className="highlight centered statName--movement">Movement</span>
-    <span className="highlight centered statName--ranged">Ranged</span>
-    <span className="highlight centered statName--melee">Melee</span>
-    <span className="highlight centered statName--armour">Armour</span>
-    <span className="highlight centered statName--base">Base</span>
-    <span className="highlight centered statName--abilities">Abilities</span>
-    <span className="highlight centered statName--keywords">Keywords</span>
-
-    {abilities && <span className="span-2 highlight">Abilities</span>}
-    <span className="centered">
-      {movement}
-    </span>
-    <span className="centered">
-      {formatStat(melee)}
-    </span>
-    <span className="centered">
-      {formatStat(ranged)}
-    </span>
-    <span className="centered">
-      {armour}
-    </span>
-    <span className="centered">
-      {formatStat(base)}
-    </span>
-    <span className="centered">
-      {abilities}
-    </span>
-    <span className="centered">
-      {keywords}
-    </span>
-    {abilities && <span className="span-2">{formatFeatures(abilities)}</span>}
-  </div>);
+  return (
+    <table className="stats-table">
+      <thead>
+        <tr>
+          <th>Movement</th>
+          <th>Melee</th>
+          <th>Ranged</th>
+          <th>Armour</th>
+          <th>Base</th>
+          <th>Keywords</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{movement}</td>
+          <td>{formatStat(melee)}</td>
+          <td>{formatStat(ranged)}</td>
+          <td>{armour}</td>
+          <td>{base}</td>
+          <td>{keywords}</td>
+        </tr>
+        {abilities && (
+          <tr>
+            <td colSpan={6}>
+              <strong>Abilities:</strong> {formatFeatures(abilities)}
+            </td>
+          </tr>
+        )}
+      </tbody>
+    </table>
+  );
 };
 
 Stats.propTypes = {
-  character: PropTypes.oneOfType([WizardShape, SoldierShape]).isRequired,
+  character: PropTypes.oneOfType(SoldierShape).isRequired,
 };
 
 export default Stats;
