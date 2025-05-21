@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
 
-import Wizard from './components/Wizard';
-import { SIGILIST } from './data/WizardTypes';
-
 import './App.css';
 import Soldier from './components/Soldier';
-import { generateWizardName } from './data/Names';
-import { addSoldier, setSoldier, setWizard, undo, useWarband, VERSIONS } from './state/Warband';
-import { ABILITIES, ARMOUR, BASE, EQUIPMENT, FACTION, KEYWORDS, MELEE, MOVEMENT, RANGED, ATTRIBUTES } from './data/Misc';
+import { addSoldier, setSoldier } from './state/Warband';
 import ExportCSVButton from './components/ExportCSVButton';
 import ImportCSVButton from './components/ImportCSVButton';
 
@@ -73,11 +68,10 @@ const flattenWarbandForCSV = (warband) => {
                   cost: Number(s.cost) || 0, // Example: parse numbers if needed
                   // ...add/convert other fields as required
                 })),
-                // Add wizard/apprentice if present in import
               });
             }}/>
       
-      <p><b>Warband Cost</b>: {warbandCost}gc</p>
+      {/* <p><b>Warband Cost</b>: {warbandCost}gc</p> */}
       {warband.soldiers.map(soldier =>
         <Soldier
           key={soldier.uid}
