@@ -15,7 +15,7 @@ const getTitle = (factionType, soldierType) => {
   }
 };
 
-const getType = (factionType) => factionType ? 'School' : 'Faction';
+const getType = (factionType) => 'Faction';
 
 const formatSoldierType = soldierType => `${Soldiers[soldierType].name}`;
 
