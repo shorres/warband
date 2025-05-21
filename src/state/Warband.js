@@ -3,8 +3,9 @@ import { v4 as uuidv4 } from 'uuid';
 import { ABILITIES, ARMOUR, BASE, EQUIPMENT, FACTION, KEYWORDS, MELEE, MOVEMENT, RANGED, ATTRIBUTES } from '../data/Misc';
 
 import { generateSoldierName, generateWizardName } from "../data/Names";
-import Soldiers, { TRENCH_PILGRIM } from "../data/Soldiers";
+import Soldiers, { soldierTypes } from "../data/Soldiers";
 import { CHRONOMANCER } from '../data/WizardTypes';
+import { factionTypes } from '../data/Factions';
 
 export const VERSIONS = {
   V1: "V1",
@@ -14,10 +15,16 @@ export const addSoldier = (warband, setWarband) => {
   if (warband.soldiers.length === 8) {
     return;
   }
+
+  const defaultSoldierType = soldierTypes[0];
+  const defaultFactionType = Soldiers[defaultSoldierType][FACTION]?.[0] || factionTypes[0];
+
   const newSoldier = {
-    ...Soldiers[TRENCH_PILGRIM],
+    ...Soldiers[defaultSoldierType],
     uid: uuidv4(),
     name: generateSoldierName(),
+    soldierType: defaultSoldierType,
+    factionType: defaultFactionType
   };
   warband.soldiers.push(newSoldier);
   setWarband({ ...warband });
@@ -33,6 +40,8 @@ export const setSoldier = (warband, setWarband, newSoldier) => {
       ...Soldiers[newSoldier.soldierType],
       uid: newSoldier.uid,
       name: newSoldier.name,
+      soldierType: newSoldier.soldierType,
+      factionType: newSoldier.factionType
     };
   } else {
     warband.soldiers[soldierIdx] = newSoldier;
