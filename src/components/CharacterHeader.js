@@ -2,6 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './CharacterHeader.css';
+import HereticLegionUnits from '../data/HereticLegionUnits';
+import AntiochUnits from '../data/AntiochUnits';
+import BlackGrailUnits from '../data/BlackGrailUnits';
+import SevenHeadedUnits from '../data/SevenHeadedUnits';
+import SultanateUnits from '../data/SultanateUnits';
+import TrenchPilgrimUnits from '../data/TrenchPilgrimUnits';
 import WizardTypes, { wizardTypes } from '../data/WizardTypes';
 import Soldiers, { soldierTypes } from '../data/Soldiers';
 
@@ -31,22 +37,21 @@ const SoldierTypeSelector = ({ soldierType, onTypeChange }) => (
     {soldierTypes.map(st => <option key={st} value={st}>{formatSoldierType(st)}</option>)}
   </select>);
 
-export const CharacterHeader = ({ name, wizardType, soldierType, isApprentice, onNameChange, onTypeChange }) => {
+export const CharacterHeader = ({ name, wizardType, soldierType, onNameChange, onTypeChange }) => {
   return <div className="characterHeader">
-    <span className="blue highlight">{getTitle(wizardType, soldierType, isApprentice)}</span>
-    <span className={isApprentice ? 'span-full' : ''}><input onChange={(event) => onNameChange(event.target.value)}
+    <span className="blue highlight">{getTitle(soldierType)}</span>
+    <span className='span-half'><input onChange={(event) => onNameChange(event.target.value)}
       type="text"
       value={name} /></span>
-    {!isApprentice && <span className="blue highlight">{getType(wizardType)}</span>}
-    {wizardType && !isApprentice && <span><WizardTypeSelector wizardType={wizardType} onTypeChange={onTypeChange} /></span>}
-    {!wizardType && <span><SoldierTypeSelector soldierType={soldierType} onTypeChange={onTypeChange}/></span>}
+    {<span className="blue highlight">{getType(soldierType)}</span>}
+    {<span><WizardTypeSelector wizardType={wizardType} onTypeChange={onTypeChange} /></span>}
+    <span className="red highlight"></span>
+    {<span className='span-full'><SoldierTypeSelector soldierType={soldierType} onTypeChange={onTypeChange}/></span>}
   </div>
 };
 
 CharacterHeader.propTypes = {
   name: PropTypes.string,
-  wizardType: PropTypes.oneOf(wizardTypes),
-  isApprentice: PropTypes.bool,
   soldierType: PropTypes.oneOf(soldierTypes),
   onNameChange: PropTypes.func.isRequired,
   onTypeChange: PropTypes.func.isRequired,
