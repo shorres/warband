@@ -8,48 +8,52 @@
 }
 
 @media screen and (max-device-width:640px), screen and (max-width:640px) {
-  .statName--move {
+  .statName--movement {
     overflow: hidden;
-  }
-  .statName--move:before {
-    content: "M";
   }
 
-  .statName--fight {
+  .statName--melee {
     overflow: hidden;
-  }
-  .statName--fight:before {
-    content: "F";
   }
 
-  .statName--shoot {
+  .statName--ranged {
     overflow: hidden;
-  }
-  .statName--shoot:before {
-    content: "S";
   }
 
   .statName--armour {
     overflow: hidden;
   }
-  .statName--armour:before {
-    content: "A";
-  }
 
-  .statName--will {
+  .statName--base {
     overflow: hidden;
-  }
-  .statName--will:before {
-    content: "W";
   }
 
   .statName--health {
     overflow: hidden;
   }
-  .statName--health:before {
-    content: "H";
-  }
+}
 
+.stats-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1em;
+}
+.stats-table th,
+.stats-table td {
+  border: 1px solid #ccc;
+  padding: 4px 8px;
+  text-align: center;
+}
+.stats-table th {
+  background: #f0f0f0;
+}
+
+.stat-label {
+  font-weight: bold;
+  text-align: right;
+}
+.stat-value {
+  text-align: left;
 }
 
 .improve {
