@@ -1,26 +1,83 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Tooltip } from 'react-tooltip';
 
 import './Stats.css';
 import CharacterFeatures from '../data/CharacterFeatures';
 import SoldierShape from '../shapes/SoldierShape';
+import Keywords from '../data/Keywords';
 import {ARMOUR, BASE, EQUIPMENT, FACTION, KEYWORDS, MELEE, MOVEMENT, RANGED, ABILITIES } from '../data/Misc';
 
-const formatFeatures = abilities => {
-  if (!abilities) return '';
-  if (Array.isArray(abilities)) {
-    return abilities.map(ability => CharacterFeatures[ability]?.name || ability).join(', ');
-  }
-  // If it's a string (from CSV), split by comma and trim
-  if (typeof abilities === 'string') {
-    return abilities
-      .split(',')
-      .map(a => a.trim())
-      .map(ability => CharacterFeatures[ability]?.name || ability)
-      .join(', ');
-  }
-  return '';
+const formatKeywords = (keywords, tooltipId = null) => {
+  if (!keywords) return '';
+  const keyList = Array.isArray(keywords)
+    ? keywords
+    : typeof keywords === 'string'
+      ? keywords.split(',').map(a => a.trim())
+      : [];
+
+  return keyList.map((keyword, i) => {
+    const kw = Keywords[keyword];
+    const name = kw?.name || keyword;
+    const description = kw?.description || '';
+    if (tooltipId && description) {
+      return (
+        <span
+          key={keyword + i}
+          className='keyword-tooltip'
+          data-tooltip-id={tooltipId}
+          data-tooltip-content={description}
+          style={{ textDecoration: "underline dotted", cursor: "help" }}
+        >
+          {name}
+          {i < keyList.length - 1 ? ', ' : ''}
+        </span>
+      );
+    }
+    return (
+      <span key={keyword + i} className='keyword-tooltip'>
+        {name}
+        {i < keyList.length - 1 ? ', ' : ''}
+      </span>
+    );
+  });
 };
+
+const formatAbilities = (abilities, tooltipId = null) => {
+  if (!abilities) return '';
+  const abilityList = Array.isArray(abilities)
+    ? abilities
+    : typeof abilities === 'string'
+      ? abilities.split(',').map(a => a.trim())
+      : [];
+
+  return abilityList.map((ability, i) => {
+    const abilityFound = CharacterFeatures[ability];
+    const name = abilityFound?.name || ability;
+    const description = abilityFound?.description || '';
+    if (tooltipId && description) {
+      return (
+        <span
+          key={ability + i}
+          className='ability-tooltip'
+          data-tooltip-id={tooltipId}
+          data-tooltip-content={description}
+          style={{ textDecoration: "underline dotted", cursor: "help" }}
+        >
+          {name}
+          {i < abilityList.length - 1 ? ', ' : ''}
+        </span>
+      );
+    }
+    return (
+      <span key={ability + i} className='ability-tooltip'>
+        {name}
+        {i < abilityList.length - 1 ? ', ' : ''}
+      </span>
+    );
+  });
+};
+
 const formatStat = stat => stat >= 0 ? `+${stat}` : stat === 0 ? stat : `${stat}`;
 
 export const Stats = ({character}) => {
@@ -56,13 +113,15 @@ export const Stats = ({character}) => {
         </tr>
         <tr>
           <td colSpan={6}>
-            <strong>Keywords:</strong> {formatFeatures(keywords)}
+            <strong>Keywords:</strong> {formatKeywords(keywords, 'keywords-tooltip')}
+            <Tooltip id='keywords-tooltip'place= 'bottom'/>
           </td>
         </tr>
         {abilities && (
           <tr>
             <td colSpan={6}>
-              <strong>Abilities:</strong> {formatFeatures(abilities)}
+              <strong>Abilities:</strong> {formatAbilities(abilities, 'ability-tooltip')}
+              <Tooltip id='ability-tooltip'place= 'bottom'/>
             </td>
           </tr>
         )}
