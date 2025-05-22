@@ -4,7 +4,7 @@ import { Tooltip } from 'react-tooltip';
 
 import './Stats.css';
 import CharacterFeatures from '../data/CharacterFeatures';
-import SoldierShape from '../shapes/SoldierShape';
+import characterShape from '../shapes/CharacterShape';
 import Keywords from '../data/Keywords';
 import {ARMOUR, BASE, EQUIPMENT, FACTION, KEYWORDS, MELEE, MOVEMENT, RANGED, ABILITIES } from '../data/Misc';
 
@@ -131,7 +131,7 @@ export const Stats = ({character}) => {
 };
 
 Stats.propTypes = {
-  character: PropTypes.oneOfType(SoldierShape).isRequired,
+  character: PropTypes.oneOfType(characterShape).isRequired,
 };
 
 export default Stats;

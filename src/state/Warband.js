@@ -2,9 +2,8 @@ import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { ABILITIES, ARMOUR, BASE, EQUIPMENT, FACTION, KEYWORDS, MELEE, MOVEMENT, RANGED, ATTRIBUTES } from '../data/Misc';
 
-import { generateSoldierName, generateWizardName } from "../data/Names";
+import { generateSoldierName} from "../data/Names";
 import Soldiers, { soldierTypes } from "../data/Soldiers";
-import { CHRONOMANCER } from '../data/WizardTypes';
 import { factionTypes } from '../data/Factions';
 
 export const VERSIONS = {
