@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SoldierShape from '../shapes/SoldierShape';
+import CharacterShape from '../shapes/CharacterShape';
 import Stats from './Stats';
 import CharacterHeader from './CharacterHeader';
 
@@ -38,7 +38,7 @@ const Soldier = ({ soldier, setSoldier }) => {
 };
 
 Soldier.propTypes = {
-  soldier: SoldierShape.isRequired
+  soldier: CharacterShape.isRequired
 };
 
 export default Soldier;
