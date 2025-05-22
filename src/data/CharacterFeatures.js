@@ -46,6 +46,7 @@ export default {
   },
   [TWO_HANDED_WEAPON]: {
     name: 'Two-handed weapon',
+    description: 'Test description',
     damage: 2,
   },
   [SHIELD]: {

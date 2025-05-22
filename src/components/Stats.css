@@ -47,13 +47,21 @@
 .stats-table th {
   background: #f0f0f0;
 }
-
 .stat-label {
   font-weight: bold;
   text-align: right;
 }
 .stat-value {
   text-align: left;
+}
+
+.keyword-tooltip,
+.ability-tooltip{
+  display: inline;
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
 }
 
 .improve {
