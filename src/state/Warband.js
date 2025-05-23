@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { ABILITIES, ARMOUR, BASE, EQUIPMENT, FACTION, KEYWORDS, MELEE, MOVEMENT, RANGED, ATTRIBUTES } from '../data/Misc';
 
 import { generateSoldierName} from "../data/Names";
-import Soldiers, { soldierTypes } from "../data/Soldiers";
+import Soldiers, { soldierTypes } from "../data/Units";
 import { factionTypes } from '../data/Factions';
 
 export const VERSIONS = {
