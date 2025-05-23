@@ -47,7 +47,6 @@ span {
 
 body{
   background-image:
-    linear-gradient(rgba(128, 2, 2, 0.555), rgba(190, 163, 72, 0.11)),
     url('../public/artillery+battery+760_f_small.jpg');
   background-size: cover;
   background-repeat: repeat;
