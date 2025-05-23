@@ -7,36 +7,11 @@
   grid-column: 7 / span 2;
 }
 
-@media screen and (max-device-width:640px), screen and (max-width:640px) {
-  .statName--movement {
-    overflow: hidden;
-  }
-
-  .statName--melee {
-    overflow: hidden;
-  }
-
-  .statName--ranged {
-    overflow: hidden;
-  }
-
-  .statName--armour {
-    overflow: hidden;
-  }
-
-  .statName--base {
-    overflow: hidden;
-  }
-
-  .statName--health {
-    overflow: hidden;
-  }
-}
-
 .stats-table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 1em;
+  background: rgba(255, 255, 255, 0.863);
 }
 .stats-table th,
 .stats-table td {
@@ -45,14 +20,7 @@
   text-align: center;
 }
 .stats-table th {
-  background: #f0f0f0;
-}
-.stat-label {
-  font-weight: bold;
-  text-align: right;
-}
-.stat-value {
-  text-align: left;
+  background: #aaaa88;
 }
 
 .keyword-tooltip,
@@ -64,26 +32,6 @@
   margin: 0;
 }
 
-.improve {
-  border: 0;
-  position: absolute;
-  height: 1rem;
-  background-color: transparent;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-.improve:hover {
-  color: green;
-}
-
 .centered {
   text-align: center;
-}
-
-.xpField {
-  font-size: 1rem;
-  border: 0;
-  width: 100%;
-  text-align: right;
 }

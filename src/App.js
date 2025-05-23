@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import './App.css';
+import logo from './Trench-Crusade-Logo.png';
 import Soldier from './components/Soldier';
 import { addSoldier, setSoldier } from './state/Warband';
 import ExportCSVButton from './components/ExportCSVButton';
@@ -53,7 +54,8 @@ function App() {
 
   return (
     <div className="container">
-      <h1 className="title">Trench Crusade</h1>
+      <body className='body'></body>
+      <img src={logo} className="logo"/>
       <span className='button'><button onClick={() => { addSoldier(warband, setWarband); }}>Add Soldier</button>
         <ImportCSVButton
           onImport={(importedRows) => {
