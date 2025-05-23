@@ -1,6 +1,8 @@
 .characterHeader {
   display: grid;
-  grid-template-columns: 2fr 6fr 2fr 6fr;
+  grid-template-columns: 2fr 4fr 4fr 2fr; /* 2/3 for select, 1/3 for label */
+  grid-template-rows: auto auto;
+  gap: 0.5rem;
 }
 
 .characterHeader input {
@@ -21,6 +23,27 @@
   overflow: hidden;
 }
 
+.characterHeader .faction-label {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  align-self: center;
+}
+
+.characterHeader .faction-select {
+  grid-column: 2 / 6;
+  grid-row: 1 / 2;
+}
+
 .characterHeader .span-full {
   grid-column: 2 / span 3;
+}
+
+.characterHeader .name-input {
+  grid-column: 1/3;
+  grid-row: 2 / 3;
+}
+
+.characterHeader .unit-type-select {
+  grid-column: 3 / 6;
+  grid-row: 2 / 3;
 }
