@@ -39,3 +39,18 @@ span {
   font-family: NotoSerif-Regular, serif;
   font-weight: bold;
 }
+
+.body{
+  background-image: url('../public/artillery+battery+760_f_small.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  min-height: 100vh;
+}
+
+.logo{
+  width: 450px;
+  height: auto;
+  display: block;
+  margin: 0 auto 1rem auto;
+}
