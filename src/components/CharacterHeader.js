@@ -2,9 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './CharacterHeader.css';
+import grailLogo from '../assets/Black_Grail_Logo.png';
+import pilgrimLogo from '../assets/Trench_Pilgrims_Logo.png';
+import courtLogo from '../assets/Court_Logo.png';
+import sultanLogo from '../assets/Iron_Sultante_Logo.png';
+import antiochLogo from '../assets/New_Antioch_Logo.png';
+import legionLogo from '../assets/Heretic_Legion_Logo.png';
 import Factions, {factionTypes} from "../data/Factions";
 import Soldiers, {soldierTypes} from '../data/Units';
 import { FACTION } from '../data/Misc';
+
+const factionLogos={
+  'The Principality of New Antioch':antiochLogo,
+  'The Court of the Seven Headed Serpent':courtLogo,
+  'The Iron Sultanate':sultanLogo,
+  'The Cult of the Black Grail':grailLogo,
+  'Trench Pilgrims':pilgrimLogo,
+  'The Heretic Legion':legionLogo
+}
 
 const getTitle = (factionType, soldierType) => {
   if (factionType) {
@@ -38,7 +53,11 @@ const SoldierTypeSelector = ({ soldierType, onTypeChange, factionType }) => {
 
 export const CharacterHeader = ({ name, factionType, soldierType, onNameChange, onTypeChange }) => {
   return <div className="characterHeader">
-    <span className="faction-label blue highlight">Faction:</span>
+    <span className="faction-label">
+      {factionType && factionLogos[factionType] ? (
+        <img src={factionLogos[factionType]} alt={factionType} className="faction-logo" />
+      ) : null}
+    </span>
     <span className="faction-select"><FactionTypeSelector factionType={factionType} onTypeChange={onTypeChange} /></span>
     <span className='name-input'><input onChange={(event) => onNameChange(event.target.value)}
       type="text"

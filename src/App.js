@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import './App.css';
-import logo from './Trench-Crusade-Logo.png';
+import logo from './assets/Trench-Crusade-Logo.png';
 import Soldier from './components/Soldier';
 import { addSoldier, setSoldier } from './state/Warband';
 import ExportCSVButton from './components/ExportCSVButton';
@@ -54,7 +54,6 @@ function App() {
 
   return (
     <div className="container">
-      <body className='body'></body>
       <img src={logo} className="logo"/>
       <span className='button'><button onClick={() => { addSoldier(warband, setWarband); }}>Add Soldier</button>
         <ImportCSVButton
