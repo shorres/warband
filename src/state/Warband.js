@@ -11,7 +11,7 @@ export const VERSIONS = {
 };
 
 export const addSoldier = (warband, setWarband) => {
-  if (warband.soldiers.length === 8) {
+  if (warband.soldiers.length === 15) {
     return;
   }
 

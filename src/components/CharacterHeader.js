@@ -15,8 +15,6 @@ const getTitle = (factionType, soldierType) => {
   }
 };
 
-const getType = (factionType) => 'Faction';
-
 const formatSoldierType = soldierType => `${Soldiers[soldierType].name}`;
 
 const FactionTypeSelector = ({ factionType, onTypeChange }) => (
@@ -25,7 +23,6 @@ const FactionTypeSelector = ({ factionType, onTypeChange }) => (
   </select>);
 
 const SoldierTypeSelector = ({ soldierType, onTypeChange, factionType }) => {
-  console.log('Faction: ' + factionType, typeof FACTION);
   const allowedSoldiers = factionType 
     ? soldierTypes.filter(st =>
       Soldiers[st] &&
@@ -40,20 +37,17 @@ const SoldierTypeSelector = ({ soldierType, onTypeChange, factionType }) => {
 };
 
 export const CharacterHeader = ({ name, factionType, soldierType, onNameChange, onTypeChange }) => {
-  console.log({ name, factionType, soldierType, onNameChange, onTypeChange });
   return <div className="characterHeader">
-    <span className="blue highlight">{getTitle(soldierType, factionType)}</span>
-    <span className='span-half'><input onChange={(event) => onNameChange(event.target.value)}
+    <span className="faction-label blue highlight">Faction:</span>
+    <span className="faction-select"><FactionTypeSelector factionType={factionType} onTypeChange={onTypeChange} /></span>
+    <span className='name-input'><input onChange={(event) => onNameChange(event.target.value)}
       type="text"
       value={name} /></span>
-    {<span className="blue highlight">{getType(factionType)}</span>}
-    {<span><FactionTypeSelector factionType={factionType} onTypeChange={onTypeChange} /></span>}
-    <span className="red highlight"></span>
-    {<span className='span-full'><SoldierTypeSelector 
+    <span className='unit-type-select'><SoldierTypeSelector 
       soldierType={soldierType} 
       onTypeChange={onTypeChange}
       factionType={factionType}
-      /></span>}
+      /></span>
   </div>
 };
 
