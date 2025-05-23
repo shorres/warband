@@ -36,16 +36,16 @@ function App() {
     _setWarband(value);
   };
 
-const flattenWarbandForCSV = (warband) => {
-  const { soldiers } = warband;
+  const flattenWarbandForCSV = (warband) => {
+    const { soldiers } = warband;
 
-  // Export all stats attached to each soldier, including their keys/values
-  return soldiers.map(soldier => ({
-    type: "Soldier",
-    ...soldier
-  }));
-};
-  
+    // Export all stats attached to each soldier, including their keys/values
+    return soldiers.map(soldier => ({
+      type: "Soldier",
+      ...soldier
+    }));
+  };
+
   if (firstLoad) {
     decodeWarband(window.location.hash?.replace('#', ''), _setWarband);
     setFirstLoad(false);
@@ -54,23 +54,24 @@ const flattenWarbandForCSV = (warband) => {
   return (
     <div className="container">
       <h1 className="title">Trench Crusade</h1>
-      <button onClick={() => { addSoldier(warband, setWarband); }}>Add Soldier</button>
-      <ExportCSVButton data={flattenWarbandForCSV(warband)} filename="warband.csv" />
-      <ImportCSVButton
-            onImport={(importedRows) => {
-              // Transform importedRows to your warband structure as needed
-              // Example: setWarband({ soldiers: importedRows.filter(r => r.type === "Soldier") })
-              // You may need to map/parse fields to match your app's data model
-              setWarband({
-                ...warband,
-                soldiers: importedRows.filter(r => r.type === "Soldier").map(s => ({
-                  ...s,
-                  cost: Number(s.cost) || 0, // Example: parse numbers if needed
-                  // ...add/convert other fields as required
-                })),
-              });
-            }}/>
-      
+      <span className='button'><button onClick={() => { addSoldier(warband, setWarband); }}>Add Soldier</button>
+        <ImportCSVButton
+          onImport={(importedRows) => {
+            // Transform importedRows to your warband structure as needed
+            // Example: setWarband({ soldiers: importedRows.filter(r => r.type === "Soldier") })
+            // You may need to map/parse fields to match your app's data model
+            setWarband({
+              ...warband,
+              soldiers: importedRows.filter(r => r.type === "Soldier").map(s => ({
+                ...s,
+                cost: Number(s.cost) || 0, // Example: parse numbers if needed
+                // ...add/convert other fields as required
+              })),
+            });
+          }} />
+        <ExportCSVButton data={flattenWarbandForCSV(warband)} filename="warband.csv" />
+      </span>
+
       {/* <p><b>Warband Cost</b>: {warbandCost}gc</p> */}
       {warband.soldiers.map(soldier =>
         <Soldier
