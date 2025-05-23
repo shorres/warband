@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './CharacterHeader.css';
 import Factions, {factionTypes} from "../data/Factions";
-import Soldiers, {soldierTypes} from '../data/Soldiers';
+import Soldiers, {soldierTypes} from '../data/Units';
 import { FACTION } from '../data/Misc';
 
 const getTitle = (factionType, soldierType) => {

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Tooltip } from 'react-tooltip';
 
 import './Stats.css';
-import CharacterFeatures from '../data/CharacterFeatures';
+import CharacterFeatures from '../data/UnitAbilities';
 import characterShape from '../shapes/CharacterShape';
 import Keywords from '../data/Keywords';
 import {ARMOUR, BASE, EQUIPMENT, FACTION, KEYWORDS, MELEE, MOVEMENT, RANGED, ABILITIES } from '../data/Misc';
@@ -30,14 +30,14 @@ const formatKeywords = (keywords, tooltipId = null) => {
           style={{ textDecoration: "underline dotted", cursor: "help" }}
         >
           {name}
-          {i < keyList.length - 1 ? ', ' : ''}
+          {i < keyList.length - 1 ? ' / ' : ''}
         </span>
       );
     }
     return (
       <span key={keyword + i} className='keyword-tooltip'>
         {name}
-        {i < keyList.length - 1 ? ', ' : ''}
+        {i < keyList.length - 1 ? ' / ' : ''}
       </span>
     );
   });
@@ -65,14 +65,14 @@ const formatAbilities = (abilities, tooltipId = null) => {
           style={{ textDecoration: "underline dotted", cursor: "help" }}
         >
           {name}
-          {i < abilityList.length - 1 ? ', ' : ''}
+          {i < abilityList.length - 1 ? ' / ' : ''}
         </span>
       );
     }
     return (
       <span key={ability + i} className='ability-tooltip'>
         {name}
-        {i < abilityList.length - 1 ? ', ' : ''}
+        {i < abilityList.length - 1 ? ' / ' : ''}
       </span>
     );
   });

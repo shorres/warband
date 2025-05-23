@@ -6,7 +6,7 @@ import CharacterHeader from './CharacterHeader';
 
 import './Soldier.css';
 import { factionTypes } from '../data/Factions';
-import Soldiers, { soldierTypes } from '../data/Soldiers';
+import Soldiers, { soldierTypes } from '../data/Units';
 import { FACTION } from '../data/Misc';
 
 const Soldier = ({ soldier, setSoldier }) => {

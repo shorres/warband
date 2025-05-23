@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { ABILITIES, ARMOUR, BASE, KEYWORDS, MELEE, MOVEMENT, RANGED, FACTION } from '../data/Misc';
-import { abilities } from '../data/CharacterFeatures';
+import { abilities } from '../data/UnitAbilities';
 import { factionTypes } from '../data/Factions';
 import { keywordList } from '../data/Keywords';
 
