@@ -2,51 +2,67 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './CharacterHeader.css';
-import WizardTypes, { wizardTypes } from '../data/WizardTypes';
-import Soldiers, { soldierTypes } from '../data/Soldiers';
+import grailLogo from '../assets/Black_Grail_Logo.png';
+import pilgrimLogo from '../assets/Trench_Pilgrims_Logo.png';
+import courtLogo from '../assets/Court_Logo.png';
+import sultanLogo from '../assets/Iron_Sultante_Logo.png';
+import antiochLogo from '../assets/New_Antioch_Logo.png';
+import legionLogo from '../assets/Heretic_Legion_Logo.png';
+import Factions, {factionTypes} from "../data/Factions";
+import Soldiers, {soldierTypes} from '../data/Units';
+import { FACTION } from '../data/Misc';
 
-const getTitle = (wizardType, soldierType, isApprentice) => {
-  if (isApprentice) {
-    return 'Apprentice';
-  }
-  if (wizardType) {
-    return 'Wizard';
-  }
-  if (soldierType) {
-    return 'Soldier';
-  }
+const factionLogos={
+  'The Principality of New Antioch':antiochLogo,
+  'The Court of the Seven Headed Serpent':courtLogo,
+  'The Iron Sultanate':sultanLogo,
+  'The Cult of the Black Grail':grailLogo,
+  'Trench Pilgrims':pilgrimLogo,
+  'The Heretic Legion':legionLogo
+}
+
+const formatSoldierType = soldierType => `${Soldiers[soldierType].name}`;
+
+const FactionTypeSelector = ({ factionType, onTypeChange }) => (
+  <select onChange={(event) => onTypeChange(event.target.value)} value={factionType}>
+    {factionTypes.map(wt => <option key={wt} value={wt}>{Factions[wt].name}</option>)}
+  </select>);
+
+const SoldierTypeSelector = ({ soldierType, onTypeChange, factionType }) => {
+  const allowedSoldiers = factionType 
+    ? soldierTypes.filter(st =>
+      Soldiers[st] &&
+      Soldiers[st][FACTION] &&
+      Soldiers[st][FACTION].includes(factionType)
+    ) : soldierTypes;
+  
+  return (
+    <select onChange={(event) => onTypeChange(event.target.value)} value={soldierType}>
+      {allowedSoldiers.map(st => <option key={st} value={st}>{formatSoldierType(st)}</option>)}
+    </select>);
 };
 
-const getType = (wizardType) => wizardType ? 'School' : 'Type';
-
-const formatSoldierType = soldierType => `${Soldiers[soldierType].name}${Soldiers[soldierType].isSpecialist ? '*' : ''} (${Soldiers[soldierType].cost}gc)`;
-
-const WizardTypeSelector = ({ wizardType, onTypeChange }) => (
-  <select onChange={(event) => onTypeChange(event.target.value)} value={wizardType}>
-    {wizardTypes.map(wt => <option key={wt} value={wt}>{WizardTypes[wt].name}</option>)}
-  </select>);
-
-const SoldierTypeSelector = ({ soldierType, onTypeChange }) => (
-  <select onChange={(event) => onTypeChange(event.target.value)} value={soldierType}>
-    {soldierTypes.map(st => <option key={st} value={st}>{formatSoldierType(st)}</option>)}
-  </select>);
-
-export const CharacterHeader = ({ name, wizardType, soldierType, isApprentice, onNameChange, onTypeChange }) => {
+export const CharacterHeader = ({ name, factionType, soldierType, onNameChange, onTypeChange }) => {
   return <div className="characterHeader">
-    <span className="blue highlight">{getTitle(wizardType, soldierType, isApprentice)}</span>
-    <span className={isApprentice ? 'span-full' : ''}><input onChange={(event) => onNameChange(event.target.value)}
+    <span className="faction-label">
+      {factionType && factionLogos[factionType] ? (
+        <img src={factionLogos[factionType]} alt={factionType} className="faction-logo" />
+      ) : null}
+    </span>
+    <span className="faction-select"><FactionTypeSelector factionType={factionType} onTypeChange={onTypeChange} /></span>
+    <span className='name-input'><input onChange={(event) => onNameChange(event.target.value)}
       type="text"
       value={name} /></span>
-    {!isApprentice && <span className="blue highlight">{getType(wizardType)}</span>}
-    {wizardType && !isApprentice && <span><WizardTypeSelector wizardType={wizardType} onTypeChange={onTypeChange} /></span>}
-    {!wizardType && <span><SoldierTypeSelector soldierType={soldierType} onTypeChange={onTypeChange}/></span>}
+    <span className='unit-type-select'><SoldierTypeSelector 
+      soldierType={soldierType} 
+      onTypeChange={onTypeChange}
+      factionType={factionType}
+      /></span>
   </div>
 };
 
 CharacterHeader.propTypes = {
   name: PropTypes.string,
-  wizardType: PropTypes.oneOf(wizardTypes),
-  isApprentice: PropTypes.bool,
   soldierType: PropTypes.oneOf(soldierTypes),
   onNameChange: PropTypes.func.isRequired,
   onTypeChange: PropTypes.func.isRequired,

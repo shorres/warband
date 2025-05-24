@@ -13,6 +13,12 @@ code {
     monospace;
 }
 
+.react-tooltip{
+  white-space: pre-line !important;
+  max-width: 500px;
+  word-break: normal;
+}
+
 @font-face {
   font-family: NotoSerif-Regular;
   src: url(/public/NotoSerif-Regular.ttf);

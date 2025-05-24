@@ -1,6 +1,11 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 .container {
   width: 50%;
-  height: 100%;
   margin: 1rem 25% 1rem 25%;
 }
 
@@ -15,6 +20,13 @@
   margin: 2rem 0rem;
 }
 
+.button{
+  display:grid;
+  grid-template-columns: 2fr 2fr 2fr;
+  gap: 5rem;
+  border:none;
+}
+
 .title {
   font-family: NotoSerif-Regular, serif;
 }
@@ -25,10 +37,26 @@ span {
 }
 
 .blue {
-  background-color: #b1bfdc;
+  background-color: #ddd0d0;
 }
 
 .highlight {
   font-family: NotoSerif-Regular, serif;
   font-weight: bold;
+}
+
+body{
+  background-image:
+    url('../public/artillery+battery+760_f_small.jpg');
+  background-size: cover;
+  background-repeat: repeat;
+  background-position: center center;
+  min-height: 100vh;
+}
+
+.logo{
+  width: 450px;
+  height: auto;
+  display: block;
+  margin: 0 auto 1rem auto;
 }
