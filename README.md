@@ -2,15 +2,6 @@
 
 A web-based builder for creating and managing warbands for the Trench Crusade setting. Easily assemble, customize, and export your warband rosters.
 
-## Features
-
-- **Add, edit, and remove soldiers** from your warband
-- **Faction and unit selection** with automatic filtering
-- **Stat and ability display** with tooltips for keywords and abilities
-- **Import/export warbands** as CSV files for easy sharing and backup
-- **Persistent warband state** via URL hash encoding
-- **Responsive design** for desktop and mobile
-
 ## Getting Started
 
 ### Prerequisites
@@ -42,16 +33,6 @@ npm start
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### Building for Production
-
-```sh
-yarn build
-# or
-npm run build
-```
-
-The optimized build will be in the `build/` directory.
-
 ## Usage
 
 - Click **Add Soldier** to add a new unit to your warband.
@@ -61,15 +42,7 @@ The optimized build will be in the `build/` directory.
 - Use **Import CSV** and **Export to CSV** to manage your warband data.
 - The warband state is encoded in the URL hash for easy sharing/bookmarking.
 
-## Project Structure
-
-- `src/components/` – React components (UI, logic)
-- `src/data/` – Game data (units, abilities, factions, keywords)
-- `src/state/` – State management utilities
-- `src/shapes/` – PropTypes definitions
-- `public/` – Static assets and HTML
-
-## Technologies
+## Dependencies
 
 - React 19
 - PropTypes

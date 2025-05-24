@@ -21,15 +21,6 @@ const factionLogos={
   'The Heretic Legion':legionLogo
 }
 
-const getTitle = (factionType, soldierType) => {
-  if (factionType) {
-    return factionType.name;
-  }
-  if (soldierType) {
-    return 'Soldier';
-  }
-};
-
 const formatSoldierType = soldierType => `${Soldiers[soldierType].name}`;
 
 const FactionTypeSelector = ({ factionType, onTypeChange }) => (
