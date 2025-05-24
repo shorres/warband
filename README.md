@@ -1,68 +1,87 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Trench Crusade Warband Builder
 
-## Available Scripts
+A web-based builder for creating and managing warbands for the Trench Crusade setting. Easily assemble, customize, and export your warband rosters.
 
-In the project directory, you can run:
+## Features
 
-### `yarn start`
+- **Add, edit, and remove soldiers** from your warband
+- **Faction and unit selection** with automatic filtering
+- **Stat and ability display** with tooltips for keywords and abilities
+- **Import/export warbands** as CSV files for easy sharing and backup
+- **Persistent warband state** via URL hash encoding
+- **Responsive design** for desktop and mobile
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Getting Started
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### Prerequisites
 
-### `yarn test`
+- [Node.js](https://nodejs.org/) (v16+ recommended)
+- [Yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Installation
 
-### `yarn build`
+Clone the repository and install dependencies:
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```sh
+git clone https://github.com/yourusername/warband.git
+cd warband
+yarn install
+# or
+npm install
+```
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### Running the App
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Start the development server:
 
-### `yarn eject`
+```sh
+yarn start
+# or
+npm start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Building for Production
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```sh
+yarn build
+# or
+npm run build
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+The optimized build will be in the `build/` directory.
 
-## Learn More
+## Usage
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Click **Add Soldier** to add a new unit to your warband.
+- Use the dropdowns to select faction and unit type.
+- Edit soldier names directly in the input field.
+- Hover over keywords and abilities for detailed tooltips.
+- Use **Import CSV** and **Export to CSV** to manage your warband data.
+- The warband state is encoded in the URL hash for easy sharing/bookmarking.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Project Structure
 
-### Code Splitting
+- `src/components/` – React components (UI, logic)
+- `src/data/` – Game data (units, abilities, factions, keywords)
+- `src/state/` – State management utilities
+- `src/shapes/` – PropTypes definitions
+- `public/` – Static assets and HTML
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## Technologies
 
-### Analyzing the Bundle Size
+- React 19
+- PropTypes
+- [PapaParse](https://www.papaparse.com/) (CSV import/export)
+- [file-saver](https://github.com/eligrey/FileSaver.js/) (file downloads)
+- [react-tooltip](https://react-tooltip.com/) (tooltips)
+- [uuid](https://www.npmjs.com/package/uuid) (unique IDs)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+## License
 
-### Making a Progressive Web App
+This project is licensed under the [Apache 2.0 License](public/LICENSE.txt).
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+---
 
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+*Trench Crusade and related content are the property of their respective creators. This tool is a fan project and not affiliated with the official creators.*
