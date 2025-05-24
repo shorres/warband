@@ -57,15 +57,11 @@ function App() {
       <span className='button'><button onClick={() => { addSoldier(warband, setWarband); }}>Add Soldier</button>
         <ImportCSVButton
           onImport={(importedRows) => {
-            // Transform importedRows to your warband structure as needed
-            // Example: setWarband({ soldiers: importedRows.filter(r => r.type === "Soldier") })
-            // You may need to map/parse fields to match your app's data model
             setWarband({
               ...warband,
               soldiers: importedRows.map(s => ({
                 ...s,
-                cost: Number(s.cost) || 0, // Example: parse numbers if needed
-                // ...add/convert other fields as required
+                cost: Number(s.cost) || 0,
               })),
             });
           }} />
