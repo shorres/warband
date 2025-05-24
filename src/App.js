@@ -42,7 +42,6 @@ function App() {
 
     // Export all stats attached to each soldier, including their keys/values
     return soldiers.map(soldier => ({
-      type: "Soldier",
       ...soldier
     }));
   };
@@ -63,7 +62,7 @@ function App() {
             // You may need to map/parse fields to match your app's data model
             setWarband({
               ...warband,
-              soldiers: importedRows.filter(r => r.type === "Soldier").map(s => ({
+              soldiers: importedRows.map(s => ({
                 ...s,
                 cost: Number(s.cost) || 0, // Example: parse numbers if needed
                 // ...add/convert other fields as required

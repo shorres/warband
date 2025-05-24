@@ -114,14 +114,14 @@ export const Stats = ({character}) => {
         <tr>
           <td colSpan={6}>
             <strong>Keywords:</strong> {formatKeywords(keywords, 'keywords-tooltip')}
-            <Tooltip id='keywords-tooltip'place= 'bottom'/>
+            <Tooltip id='keywords-tooltip' place='bottom'/>
           </td>
         </tr>
         {abilities && (
           <tr>
             <td colSpan={6}>
               <strong>Abilities:</strong> {formatAbilities(abilities, 'ability-tooltip')}
-              <Tooltip id='ability-tooltip'place= 'bottom'/>
+              <Tooltip id='ability-tooltip' place='bottom'/>
             </td>
           </tr>
         )}
