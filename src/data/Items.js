@@ -1,5 +1,156 @@
-import { POTION } from "./ItemTypes";
-
 export default {
+    'The Heretic Legion': [
+        { name: 'Bolt Action Rifle', cost: 10, range: '24"', type: '2-handed' },
+        { name: 'Semi-automatic Rifle', cost: 15, range: '24"', type: '2-handed' },
+        { name: 'Automatic Rifle', cost: '2 Glory Points', range: '24"', type: '2-handed', modifiers: '2 attacks', limit: 2 },
+        { name: 'Pistol', cost: 6, range: '12"/melee', type: '1-handed' },
+        { name: 'Silenced Pistol', cost: 15, range: '12"/melee', type: '1-handed', modifiers: '+1D to Hit in Cover' },
+        { name: 'Grenades', cost: 7, range: '8"', type: 'grenade' },
+        { name: 'Gas Grenades', cost: 10, range: '8"', type: 'grenade', modifiers: '-1D Injury' },
+        { name: 'Incendiary Grenades', cost: 15, range: '8"', type: 'grenade' },
+        { name: 'Submachine Gun', cost: '2 Glory Points', range: '16"', type: '2-handed', modifiers: '2 Attacks' },
+        { name: 'Shotgun', cost: 10, range: '12"', type: '2-handed', modifiers: '+1D Hit' },
+        { name: 'Automatic Shotgun', cost: 15, range: '12"', type: '2-handed', modifiers: '+1D Hit' },
+        { name: 'Grenade Launcher', cost: 30, range: '36"', type: '2-handed', modifiers: 'Ignore Cover', limit: 2 },
+        { name: 'Machine Gun', cost: 50, range: '36"', type: '2-handed', modifiers: '3 Attacks', limit: 1 },
+        { name: 'Flamethrower', cost: 30, range: '8"', type: '2-handed', modifiers: '-1D Injuries, Ignores Armour', limit: 3 },
+        { name: 'Heavy Flamethrower', cost: 55, range: '10"', type: '2-handed', modifiers: 'Ignores Armour', limit: 2 },
+        { name: 'Anti-Matieriel Rifle', cost: '3 Glory Points', range: '36"', type: '2-handed', modifiers: '+1D to Injury', limit: 1 },
+        { name: 'Trench Knife', cost: 1, range: 'melee', type: 'melee', modifiers: '-1D to Hit' },
+        { name: 'Bayonet', cost: 2, range: 'melee', type: '2-handed' },
+        { name: 'Trench Club', cost: 3, range: 'melee', type: '1-handed' },
+        { name: 'Sword/Axe', cost: 4, range: 'melee', type: '1-handed' },
+        { name: 'Polearm', cost: 7, range: 'melee', type: '2-handed', modifiers: '-1D to Hit for Chargers' },
+        { name: 'Great Hammer/Maul', cost: 10, range: 'melee', type: '2-handed', modifiers: '+1 to Injury Rolls' },
+        { name: 'Great Sword/Axe', cost: 12, range: 'melee', type: '2-handed', modifiers: '+1D to Injuries' },
+        { name: 'Sacrifical Blade', cost: 23, range: 'melee', type: '1-handed', modifiers: '+2 on injury results', limit: 2 },
+        { name: 'Hellblade', cost: '1 Glory Points', range: 'melee', type: '2-handed', modifiers: '+1D to Injuries', limit: 2 },
+        { name: 'Tartarus Claws', cost: 15, range: 'melee', type: '2-handed' },
+        { name: 'Blasphemous Staff', cost: '2 Glory Points', range: 'melee', type: '1-handed' },
+        { name: 'Standard Armour', cost: 15, type: 'armour', modifiers: '-1 to all Injury Chart rolls' },
+        { name: 'Reinforced Armour', cost: 40, type: 'armour', modifiers: '-2 to all Injury Chart rolls' },
+        { name: 'Trench Shield', cost: 10, type: 'armour', modifiers: '-1 to all Injury Chart rolls' },
+        { name: 'Combat Helmet', cost: 5, type: 'equipment', rules: 'Ighnores additional BLOOD MARKERS caused by SHRAPNEL.' },
+        { name: 'Gas Mask', cost: 5, type: 'equipment', rules: 'Negates the extra BLOOD MARKER for GAS.' },
+        {
+            name: 'Unholy Trinket', cost: 15, type: 'equipment', rules: `When a model equipped with an Unholy Trinket fails a RISKY ACTION, that model may use this item. If it
+does, its Activation is not ended. Keyword: CONSUMABLE.` },
+        { name: 'Unholy Relic', cost: 15, type: 'equipment', rules: `A model equipped with an Unholy relic radiates a truly malignant aura and causes FEAR.` },
+        { name: 'Incendiary Ammunition', cost: 15, type: 'equipment', limit: 1 },
+        {
+            name: 'Shovel', cost: 5, type: 'equipment', rules: `A model equipped with a shovel always starts the game in cover if deployed on ground level, even if placed
+in open terrain. As soon as the model moves, it is no longer in cover. A model that is covered in this way retains the
+benefit of Cover even if the attacking model has an unobstructed view of it. If a model equipped with a shovel has
+two hands free, it can use it in Melee Combat as if it were a Trench Club.` },
+        {
+            name: 'Infernal Brand Mark', cost: 5, type: 'equipment', rules: `Negates the extra BLOOD MARKER from attacks with the keyword FIRE. Any such attacks suffer -1 DICE
+penalty to all injury rolls.` },
+        {
+            name: 'Troop Flag', cost: '1 Glory Point', type: 'equipment', rules: `Grants +1 DICE for all Morale tests as long as the model with the flag is not Down or Out of Action.
+Requires one hand to use.`, limit: 1
+        },
+        {
+            name: 'Musical Instrument', cost: 15, type: 'equipment', rules: `Any friendly models within 4” of the musician who is not Down can add +1 DICE to their Dash ACTIONS.
+Musical Instruments take one hand to use at all times as if it were a weapon.`, limit: 1
+        },
+        { name: 'Mountaineer Kit', cost: 3, type: 'equipment', rules: `A model with this kit adds +1 DICE to any Climbing ACTION rolls.`, limit: 2 },
+        {
+            name: 'Hellbound Soul Contract', cost: 5, type: 'equipment', rules: `When this model is taken Out of Action, any model in melee combat with them immediately suffers +1
+BLOOD MARKER unless the model ignores damage from sources with the Keyword FIRE.`, limit: 3
+        },
+    ],
+    'Trench Pilgrims': [
+        { name: 'Bolt Action Rifle', cost: 10, range: '24"', type: '2-handed' },
+        { name: 'Semi-automatic Rifle', cost: 15, range: '24"', type: '2-handed' },
+        { name: 'Pistol', cost: 6, range: '12"/melee', type: '1-handed' },
+        { name: 'Automatic Pistol', cost: 20, range: 'ranged', type:'', limit: 2}
+        { name: 'Molotov Cocktail', cost: 5, range: '6"', type: 'grenade', modifiers: '-1D to Injury' },
+        { name: 'Incendiary Grenades', cost: 15, range: '8"', type: 'grenade' },
+        { name: 'Submachine Gun', cost: '2 Glory Points', range: '16"', type: '2-handed', modifiers: '2 Attacks' },
+        { name: 'Musket', cost: 5, range: '18"', type: '2-handed', modifiers: '-1D Injury' },
+        { name: 'Shotgun', cost: 10, range: '12"', type: '2-handed', modifiers: '+1D Hit' },
+        { name: 'Flamethrower', cost: 30, range: '8"', type: '2-handed', modifiers: '-1D Injuries, Ignores Armour', limit: 3 },
+        { name: 'Machine Gun', cost: 50, range: '36"', type: '2-handed', modifiers: '3 Attacks', limit: 1 },
+        { name: 'Sniper Rifle', cost: '2 Glory Points', range: '48"', type: '2-handed', modifiers: '+1D to Hit' },
+        { name: 'Warcross', cost: '2 Glory Points', range: '8"', modifiers: 'No long-range penalty' },
+        { name: 'Punt Gun', cost: '20', range: '18"', type: '2-handed', modifiers: '+1D to hit and injure', limit: 2 },
+        { name: 'Trench Knife', cost: 1, range: 'melee', type: 'melee', modifiers: '-1D to Hit' },
+        { name: 'Bayonet', cost: 2, range: 'melee', type: '2-handed' },
+        { name: 'Trench Club', cost: 3, range: 'melee', type: '1-handed' },
+        { name: 'Sword/Axe', cost: 4, range: 'melee', type: '1-handed' },
+        { name: 'Flail/Scourge', cost: 5, range: 'melee', mtype: '1-handed', modifiers: '+1D to Hit' },
+        { name: 'Polearm', cost: 7, range: 'melee', type: '2-handed', modifiers: '-1D to Hit for Chargers' },
+        { name: 'Great Hammer/Maul', cost: 10, range: 'melee', type: '2-handed', modifiers: '+1 to Injury Rolls' },
+        { name: 'Great Sword/Axe', cost: 12, range: 'melee', type: '2-handed', modifiers: '+1D to Injuries' },
+        { name: 'Anti-Tank Hammer', cost: 15, range: 'melee', type: '2-handed', modifiers: '+1D to Injuries', limit: 3 },
+        { name: 'Misericordia', cost: 15, range: 'melee', type: '1-handed', modifiers: 'Ignores Armour', limit: 1 },
+        { name: 'Standard Armour', cost: 15, type: 'armour', modifiers: '-1 to all Injury Chart rolls' },
+        { name: 'Reinforced Armour', cost: 40, type: 'armour', modifiers: '-2 to all Injury Chart rolls' },
+        { name: 'Trench Shield', cost: 10, type: 'armour', modifiers: '-1 to all Injury Chart rolls' },
+        { name: 'Holy Icon Shield', cost: '2 Glory Points', type: 'armour', modifiers: '-1 to all Injury Chart rolls, effective even against Ignores Armour.' },
+        { name: 'Iron Capirote', cost: 7, type: 'equipment', rules: 'Negates additional BLOOD MARKERS from SHRAPNEL weapons. Immune to FEAR.' },
+        { name: 'Gas Mask', cost: 5, type: 'equipment', rules: 'Negates the extra BLOOD MARKER for GAS.' },
+        { name: 'Blessed Icon', cost: 15, type: 'equipment', rules: `When a model equipped with a Blessed Icon fails a RISKY ACTION, that model may use this item. If it does,
+its Activation is not ended. Can be used once per battle.` },
+        { name: 'Holy Relic', cost: '2 Glory Points', type: 'equipment', rules: '+1 BLESSING MARKER for this model on game start.' },
+        { name: 'Troop Flag', cost: '1 Glory Point', type: 'equipment', rules: `Grants +1 DICE for all Morale tests as long as the model with the flag is not Down or Out of Action.`},
+        { name: 'Medi-Kit', cost: 5, type: 'equipment', rules: 'Take a RISKY ACTION to remove one BLOOD MARKER from a model within 1". Pick up a Downed model.' },
+        { name: 'Field Shrine', cost: '2 Glory Points', type: 'equipment', rules: `Can be placed on the battlefield in your deployment zone. Acts as three models for Morale Tests. It has a base
+size of 40mm. Can be destroyed if any type of attack hits it.` },
+        { name: "Musician's Instrument", cost: 15, type: 'equipment', limit: 1 },
+        { name: 'Incendiary Ammunition', cost: 15, type: 'equipment', limit: 1 },
+        { name: 'Martyrdom Pills', cost: 20, type: 'equipment', rules: `Before the battle begins, a model may use this item. If it does, injuries rolled against it suffer -1 DICE until
+the end of the battle and the model is not affected by FEAR. Keywords: CONSUMABLE.`, limit: 3 },
+        { name: 'Mountaineer Kit', cost: 3, type: 'equipment', rules: `A model with this kit adds +1 DICE to any Climbing ACTION rolls.`, limit: 2 },
 
+    ],
+    'The Iron Sultanate': [
+        { name: 'Jezzail', cost: 7, range: '18"', type: '2-handed' },
+        { name: 'Siege Jezzail', cost: 30, range: '30"', type: '2-handed', modifiers: "+1D to Injuries" },
+        { name: 'Alaybozan', cost: 9, range: '12"', type: '2-handed' },
+        { name: 'MURAD Bombard', cost: 50, range: '36"', type: '1-handed', limit: 1 },
+        { name: 'Flame Cannon', cost: 60, range: '12"', type: '1-handed', limit: 1 },
+        { name: 'Halberd-Gun', cost: 20, range: 'melee/24"', type: '2-handed' },
+        { name: 'Titan Zulfiqar', cost: 30, range: 'melee', type: '1-handed', modifiers: '+2 to injury rolls' },
+        { name: "Assassin's Dagger", cost: 15, range: 'melee', type: '1-handed', modifiers: '+1 to Injury' },
+        { name: 'Alchemist Armour', cost: 50, type: 'armour' },
+        { name: 'Marid Shovel', cost: 15, type: 'equipment' },
+        { name: 'Alchemical Ammunition', cost: 3, type: 'equipment' },
+        { name: 'Cloak of Alamut', cost: 25, type: 'equipment', limit: 1 },
+        { name: 'Wind Amulet', cost: 10, type: 'equipment', limit: 2 },
+        { name: 'Binoculars', cost: 10, type: 'equipment', rules: `Any enemy Infiltrator cannot be placed closer than 16” of this model.` },
+    ],
+    'The Principality of New Antioch': [
+        { name: 'Heavy Shotgun', cost: 20, range: '12"', type: '2-handed', modifiers: '+1D to Attacks, +2D to Injuries at Short Range', limit: 2 },
+        { name: 'Satchel Charge', cost: 15, range: '6"', type: 'grenade', modifiers: '+1D Injury, ignores armour', limit: 3 },
+        { name: 'Machine Armour', cost: 50, type: 'armour', modifiers: '-3 to all Injury Chart rolls', limit: 1 },
+        { name: 'Engineer Body Armour', cost: 45, type: 'armour' },
+        { name: 'Heavy Ballistic Shield', cost: 15, type: 'armour' },
+    ],
+    'The Cult of the Black Grail': [
+        { name: 'Infested Rifle', cost: 15, range: '18"', type: '2-handed' },
+        { name: 'Corruption Belcher', cost: 30, range: '8"', type: '2-handed', limit: 2 },
+        { name: 'Putrid Shotgun', cost: 20, range: '12"', type: '2-handed', modifiers: '+1D to Attacks', limit: 2 },
+        { name: 'Parasite Grenades', cost: 15, range: '8"', type: 'grenade' },
+        { name: 'Viscera Cannon', cost: 50, range: '24"', type: '2-handed', modifiers: '+2D to Attacks' },
+        { name: 'Plague Blade', cost: 7, range: 'melee', type: '1-handed', limit: 2 },
+        { name: "Beelzebub's Axe", cost: 30, range: 'melee', type: '2-handed', modifiers: '+2D to Injury rolls', limit: 1 },
+        { name: 'Black Grail Shield', cost: 20, type: 'armour' },
+        { name: 'Compound Eyes Helmet', cost: 10, type: 'equipment', limit: 3 },
+        { name: 'Grail Devotee', cost: 15, type: 'equipment', limit: 2 },
+        { name: 'Troop Standard', cost: 10, type: 'equipment', limit: 1 },
+    ],
+    'The Court of the Seven Headed Serpent': [
+        { name: 'Blunderbuss', cost: 5, range: 'ranged', type: 'ranged' },
+        { name: 'Arquebus', cost: 8, range: '18"', type: '2-handed' },
+        { name: 'Ophidian Rifle', cost: 25, range: '30"', type: '2-handed', limit: 3 },
+        { name: 'Serpent Assault Gun', cost: 50, range: '36"', type: '2-handed', limit: 2 },
+        { name: 'Bow of Lethe', range: '24"', type: '1-handed', modifiers: '+2D to Injuries/Ignores Armour' },
+        { name: 'Torture Instrument', cost: 8, range: 'melee', type: '2-handed' },
+        { name: 'Headtaker', cost: 15, range: 'melee', type: '1-handed', modifiers: '+2 to Injuries vs not Activated' },
+        { name: 'Malebranche Sword', cost: 50, range: 'melee', type: '2-handed', modifiers: '3D6 Injury roll', limit: 1 },
+        { name: 'Infernal Iron Armour', cost: 50, type: 'armour' },
+        { name: 'Crown of Hellfire', cost: 15, type: 'equipment' },
+        { name: 'Restraining Muzzle', cost: 10, type: 'equipment', limit: 3 },
+    ]
 }
