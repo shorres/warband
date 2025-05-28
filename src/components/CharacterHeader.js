@@ -50,16 +50,15 @@ export const CharacterHeader = ({ name, factionType, soldierType, equipment = []
   const equipmentOptions = Object.entries(factionItems || {}).map(([key, value]) => ({
     key,
     ...value
-
   }));
 
   const handleAddEquipment = (e) => {
-    const selected = equipmentOptions.find(opt => opt.name === e.target.value);
+    const value = e.target.value || equipmentInput;
+    const selected = equipmentOptions.find(opt => opt.name === value);
     if (selected && !equipment.includes(selected.key)) {
       onEquipChange([...equipment, selected.key]);
     }
-    // Optionally clear the input after selection
-    e.target.value = '';
+    setEquipmentInput('');
   };
 
   // Handler for removing equipment
@@ -69,12 +68,15 @@ export const CharacterHeader = ({ name, factionType, soldierType, equipment = []
 
   console.log(equipment)
   const safeEquipment = Array.isArray(equipment) ? equipment : [];
+
+  const [equipmentInput, setEquipmentInput] = React.useState('');
+
   return <div className="characterHeader">
-    <span className="faction-label">
+    {/* <span className="faction-label">
       {factionType && factionLogos[factionType] ? (
         <img src={factionLogos[factionType]} alt={factionType} className="faction-logo" />
       ) : null}
-    </span>
+    </span> */}
     <span className="faction-select"><FactionTypeSelector factionType={factionType} onTypeChange={onTypeChange} /></span>
     <span className='unit-type-select'><SoldierTypeSelector
       soldierType={soldierType}
@@ -89,7 +91,12 @@ export const CharacterHeader = ({ name, factionType, soldierType, equipment = []
         list="equipment-options"
         placeholder={!factionType ? 'Select a faction first' : 'Add equipment'}
         disabled={!factionType}
-        onChange={handleAddEquipment}
+        value={equipmentInput}
+        onChange={e => setEquipmentInput(e.target.value)}
+        onBlur={handleAddEquipment}
+        onKeyDown={e => {
+          if (e.key === 'Enter') handleAddEquipment(e);
+        }}
       />
       <datalist id="equipment-options">
         {equipmentOptions.map(opt => (
@@ -110,31 +117,31 @@ export const CharacterHeader = ({ name, factionType, soldierType, equipment = []
       </datalist>
       {/* Show selected equipment with info and remove button */}
       <ul>
-  {safeEquipment.map(key => {
-    const item = equipmentOptions.find(opt => opt.key === key);
-    if (!item) return null;
-    // Build tooltip content
-    const tooltipContent = [
-      item.range ? `Range: ${item.range}` : null,
-      item.type ? `Type: ${item.type}` : null,
-      item.modifiers ? `Modifiers: ${item.modifiers}` : null,
-      item.limit ? `Limit: ${item.limit}` : null
-    ].filter(Boolean).join(' | ');
-    return (
-      <li key={key}>
-        <span
-          data-tooltip-id={`equipment-tooltip-${key}`}
-          data-tooltip-content={tooltipContent}
-          style={{ textDecoration: "underline dotted", cursor: "help" }}
-        >
-          <strong>{item.name}</strong>
-        </span>
-        <Tooltip id={`equipment-tooltip-${key}`} place="bottom" />
-        <button type="button" onClick={() => handleRemoveEquipment(key)}>Remove</button>
-      </li>
-    );
-  })}
-</ul>
+        {safeEquipment.map(key => {
+          const item = equipmentOptions.find(opt => opt.key === key);
+          if (!item) return null;
+          // Build tooltip content
+          const tooltipContent = [
+            item.range ? `Range: ${item.range}` : null,
+            item.type ? `Type: ${item.type}` : null,
+            item.modifiers ? `Modifiers: ${item.modifiers}` : null,
+            item.limit ? `Limit: ${item.limit}` : null
+          ].filter(Boolean).join(' | ');
+          return (
+            <li key={key}>
+              <span className='equipment-list'
+                data-tooltip-id={`equipment-tooltip-${key}`}
+                data-tooltip-content={tooltipContent}
+                style={{ textDecoration: "underline dotted", cursor: "help" }}
+              >
+                <strong>{item.name}</strong>
+              </span>
+              <Tooltip id={`equipment-tooltip-${key}`} place="bottom" />
+              <button type="button" onClick={() => handleRemoveEquipment(key)}>X</button>
+            </li>
+          );
+        })}
+      </ul>
     </span>
   </div>
 };
