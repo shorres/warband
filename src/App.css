@@ -61,9 +61,24 @@ body{
   margin: 0 auto 1rem auto;
 }
 
+.faction-select{
+  display:grid;
+  grid-template-columns: 2fr 2fr 2fr;
+  grid-template-rows: auto;
+  border: none;
+}
+
+.faction-input {
+  grid-column:2/3;
+  height:35%;
+  align-self:center;
+  font-size:large;
+}
+
 .faction-logo{
-  width: 64px;
-  height: 64px;
+  width: 100px;
+  height: 100px;
   object-fit: scale-down;
   vertical-align: middle;
+  grid-column: 3;
 }

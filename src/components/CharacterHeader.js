@@ -2,26 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './CharacterHeader.css';
-import grailLogo from '../assets/Black_Grail_Logo.png';
-import pilgrimLogo from '../assets/Trench_Pilgrims_Logo.png';
-import courtLogo from '../assets/Court_Logo.png';
-import sultanLogo from '../assets/Iron_Sultante_Logo.png';
-import antiochLogo from '../assets/New_Antioch_Logo.png';
-import legionLogo from '../assets/Heretic_Legion_Logo.png';
 import Factions, { factionTypes } from "../data/Factions";
 import Soldiers, { soldierTypes } from '../data/Units';
 import { FACTION } from '../data/Misc';
 import Items, { itemList } from '../data/Items';
 import { Tooltip } from 'react-tooltip';
-
-const factionLogos = {
-  'The Principality of New Antioch': antiochLogo,
-  'The Court of the Seven Headed Serpent': courtLogo,
-  'The Iron Sultanate': sultanLogo,
-  'The Cult of the Black Grail': grailLogo,
-  'Trench Pilgrims': pilgrimLogo,
-  'The Heretic Legion': legionLogo
-}
 
 const formatSoldierType = soldierType => `${Soldiers[soldierType].name}`;
 
@@ -71,12 +56,6 @@ export const CharacterHeader = ({ name, factionType, soldierType, equipment = []
   const [equipmentInput, setEquipmentInput] = React.useState('');
 
   return <div className="characterHeader">
-    {/* <span className="faction-label">
-      {factionType && factionLogos[factionType] ? (
-        <img src={factionLogos[factionType]} alt={factionType} className="faction-logo" />
-      ) : null}
-    </span> */}
-    {/* <span className="faction-select"><FactionTypeSelector factionType={factionType} onTypeChange={onTypeChange} /></span> */}
     <span className='unit-type-select'><SoldierTypeSelector
       soldierType={soldierType}
       onTypeChange={onTypeChange}

@@ -2,11 +2,26 @@ import React, { useState } from 'react';
 
 import './App.css';
 import logo from './assets/Trench-Crusade-Logo.png';
+import grailLogo from './assets/Black_Grail_Logo.png';
+import pilgrimLogo from './assets/Trench_Pilgrims_Logo.png';
+import courtLogo from './assets/Court_Logo.png';
+import sultanLogo from './assets/Iron_Sultante_Logo.png';
+import antiochLogo from './assets/New_Antioch_Logo.png';
+import legionLogo from './assets/Heretic_Legion_Logo.png';
 import Soldier from './components/Soldier';
 import { addSoldier, setSoldier } from './state/Warband';
+import Factions, { factionTypes } from "./data/Factions";
 import ExportCSVButton from './components/ExportCSVButton';
 import ImportCSVButton from './components/ImportCSVButton';
 
+const factionLogos = {
+  'The Principality of New Antioch': antiochLogo,
+  'The Court of the Seven Headed Serpent': courtLogo,
+  'The Iron Sultanate': sultanLogo,
+  'The Cult of the Black Grail': grailLogo,
+  'Trench Pilgrims': pilgrimLogo,
+  'The Heretic Legion': legionLogo
+}
 
 const encodeWarband = (warband) => {
   const encoded = btoa(JSON.stringify(warband));
@@ -81,8 +96,8 @@ function App() {
       </span>
 
       {/* <p><b>Warband Cost</b>: {warbandCost}gc</p> */}
-      <span>
-        <select
+      <span className='faction-select'>
+        <select className='faction-input'
           value={warband.factionType}
           onChange={e => setWarbandFaction(e.target.value)}
         >
@@ -94,6 +109,9 @@ function App() {
           <option value="The Heretic Legion">The Heretic Legion</option>
           <option value="The Iron Sultanate">The Iron Sultanate</option>
         </select>
+                {warband.factionType && factionLogos[warband.factionType] ? (
+          <img src={factionLogos[warband.factionType]} alt={warband.factionType} className="faction-logo" />
+        ) : null}
       </span>
       {warband.soldiers.map(soldier =>
         <Soldier
