@@ -16,6 +16,7 @@ const Soldier = ({ soldier, setSoldier }) => {
       name={soldier.name} 
       soldierType={soldier.soldierType} 
       factionType={soldier.factionType}
+      equipment={soldier.equipment || []}
       onNameChange={(name) => setSoldier({ ...soldier, name })}
       onTypeChange={(type) => {
         if(factionTypes.includes(type)){
@@ -26,11 +27,13 @@ const Soldier = ({ soldier, setSoldier }) => {
             ...soldier,
             factionType: type,
             soldierType: firstAvailable,
+            equipment: [],
           });
         } else{
           setSoldier({...soldier, soldierType:type});
         }
       }}
+      onEquipChange={equipmentArray => setSoldier({ ...soldier, equipment: Array.isArray(equipmentArray) ? equipmentArray : [] })}
         />
       <Stats character={soldier} />
     </div>
