@@ -60,3 +60,10 @@ body{
   display: block;
   margin: 0 auto 1rem auto;
 }
+
+.faction-logo{
+  width: 64px;
+  height: 64px;
+  object-fit: scale-down;
+  vertical-align: middle;
+}

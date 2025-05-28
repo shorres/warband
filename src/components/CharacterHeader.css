@@ -48,7 +48,7 @@
 
 .characterHeader .name-input {
   grid-column: 1/3;
-  grid-row: 2 / 3;
+  grid-row: 1;
   align-self: center;
 }
 
@@ -74,11 +74,4 @@ ul li {
   min-width: 5ch; /* or whatever fits your content */
   flex: 1 1 30%;   /* 3 per row, adjust as needed */
   max-width: 33%;
-}
-
-.faction-logo{
-  width: 64px;
-  height: 64px;
-  object-fit: scale-down;
-  vertical-align: middle;
 }
