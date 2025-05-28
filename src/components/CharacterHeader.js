@@ -66,7 +66,6 @@ export const CharacterHeader = ({ name, factionType, soldierType, equipment = []
     onEquipChange(equipment.filter(eq => eq !== key));
   };
 
-  console.log(equipment)
   const safeEquipment = Array.isArray(equipment) ? equipment : [];
 
   const [equipmentInput, setEquipmentInput] = React.useState('');
@@ -77,7 +76,7 @@ export const CharacterHeader = ({ name, factionType, soldierType, equipment = []
         <img src={factionLogos[factionType]} alt={factionType} className="faction-logo" />
       ) : null}
     </span> */}
-    <span className="faction-select"><FactionTypeSelector factionType={factionType} onTypeChange={onTypeChange} /></span>
+    {/* <span className="faction-select"><FactionTypeSelector factionType={factionType} onTypeChange={onTypeChange} /></span> */}
     <span className='unit-type-select'><SoldierTypeSelector
       soldierType={soldierType}
       onTypeChange={onTypeChange}

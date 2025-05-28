@@ -16,14 +16,12 @@ export const addSoldier = (warband, setWarband) => {
   }
 
   const defaultSoldierType = soldierTypes[0];
-  const defaultFactionType = Soldiers[defaultSoldierType][FACTION]?.[0] || factionTypes[0];
-
   const newSoldier = {
     ...Soldiers[defaultSoldierType],
     uid: uuidv4(),
     name: generateSoldierName(),
     soldierType: defaultSoldierType,
-    factionType: defaultFactionType
+    factionType: warband.factionType
   };
   warband.soldiers.push(newSoldier);
   setWarband({ ...warband });
@@ -33,7 +31,7 @@ export const findSoldierIdx = (warband, uid) => warband.soldiers.findIndex(s => 
 
 export const setSoldier = (warband, setWarband, newSoldier) => {
   const soldierIdx = findSoldierIdx(warband, newSoldier.uid);
-
+  
   if (warband.soldiers[soldierIdx].soldierType !== newSoldier.soldierType) {
     warband.soldiers[soldierIdx] = {
       ...Soldiers[newSoldier.soldierType],

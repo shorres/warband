@@ -27,6 +27,7 @@ function App() {
   const [firstLoad, setFirstLoad] = useState(true);
 
   const [warband, _setWarband] = useState({
+    factionType: '',
     soldiers: []
   });
 
@@ -46,6 +47,17 @@ function App() {
     }));
   };
 
+  const setWarbandFaction = (newFaction) => {
+    setWarband({
+      ...warband,
+      factionType: newFaction,
+      soldiers: warband.soldiers.map(soldier => ({
+        ...soldier,
+        factionType: newFaction
+      }))
+    });
+  };
+
   if (firstLoad) {
     decodeWarband(window.location.hash?.replace('#', ''), _setWarband);
     setFirstLoad(false);
@@ -53,7 +65,7 @@ function App() {
 
   return (
     <div className="container">
-      <img src={logo} className="logo"/>
+      <img src={logo} className="logo" />
       <span className='button'><button onClick={() => { addSoldier(warband, setWarband); }}>Add Soldier</button>
         <ImportCSVButton
           onImport={(importedRows) => {
@@ -69,6 +81,20 @@ function App() {
       </span>
 
       {/* <p><b>Warband Cost</b>: {warbandCost}gc</p> */}
+      <span>
+        <select
+          value={warband.factionType}
+          onChange={e => setWarbandFaction(e.target.value)}
+        >
+          <option value="">Select Faction</option>
+          <option value="The Principality of New Antioch">The Principality of New Antioch</option>
+          <option value="The Court of the Seven Headed Serpent">The Court of the Seven Headed Serpent</option>
+          <option value="Trench Pilgrims">Trench Pilgrims</option>
+          <option value="The Cult of the Black Grail">The Cult of the Black Grail</option>
+          <option value="The Heretic Legion">The Heretic Legion</option>
+          <option value="The Iron Sultanate">The Iron Sultanate</option>
+        </select>
+      </span>
       {warband.soldiers.map(soldier =>
         <Soldier
           key={soldier.uid}
