@@ -15,7 +15,21 @@ export const addSoldier = (warband, setWarband) => {
     return;
   }
 
-  const defaultSoldierType = soldierTypes[0];
+  let defaultSoldierType = soldierTypes[0];
+  if(warband.factionType == 'The Principality of New Antioch'){
+    defaultSoldierType = soldierTypes[25];
+  } else if (warband.factionType == 'Trench Pilgrims'){
+    defaultSoldierType = soldierTypes[9];
+  }else if (warband.factionType == 'The Court of the Seven Headed Serpent'){
+    defaultSoldierType = soldierTypes[42];
+  }else if (warband.factionType == 'The Heretic Legion'){
+    defaultSoldierType = soldierTypes[0];
+  }else if (warband.factionType == 'The Cult of the Black Grail'){
+    defaultSoldierType = soldierTypes[34];
+  }else if (warband.factionType == 'The Iron Sultanate'){
+    defaultSoldierType = soldierTypes[17];
+  }
+
   const newSoldier = {
     ...Soldiers[defaultSoldierType],
     uid: uuidv4(),
@@ -23,8 +37,7 @@ export const addSoldier = (warband, setWarband) => {
     soldierType: defaultSoldierType,
     factionType: warband.factionType
   };
-  warband.soldiers.push(newSoldier);
-  setWarband({ ...warband });
+  setWarband({ ...warband, soldiers: [...warband.soldiers, newSoldier] });
 };
 
 export const findSoldierIdx = (warband, uid) => warband.soldiers.findIndex(s => s.uid === uid);
