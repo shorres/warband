@@ -10,9 +10,10 @@ import antiochLogo from './assets/New_Antioch_Logo.png';
 import legionLogo from './assets/Heretic_Legion_Logo.png';
 import Soldier from './components/Soldier';
 import { addSoldier, setSoldier } from './state/Warband';
-import Factions, { factionTypes } from "./data/Factions";
+import Factions, { factionTypes, NEW_ANTIOCH } from "./data/Factions";
 import ExportCSVButton from './components/ExportCSVButton';
 import ImportCSVButton from './components/ImportCSVButton';
+import { EQUIPMENT } from './data/Misc';
 
 const factionLogos = {
   'The Principality of New Antioch': antiochLogo,
@@ -42,7 +43,7 @@ function App() {
   const [firstLoad, setFirstLoad] = useState(true);
 
   const [warband, _setWarband] = useState({
-    factionType: '',
+    factionType: 'The Principality of New Antioch',
     soldiers: []
   });
 
@@ -58,6 +59,7 @@ function App() {
 
     // Export all stats attached to each soldier, including their keys/values
     return soldiers.map(soldier => ({
+      factionType: soldiers.factionType,
       ...soldier
     }));
   };
@@ -84,10 +86,15 @@ function App() {
       <span className='button'><button onClick={() => { addSoldier(warband, setWarband); }}>Add Soldier</button>
         <ImportCSVButton
           onImport={(importedRows) => {
+            const importedFaction = importedRows[0]?.factionType || "";
             setWarband({
               ...warband,
+              factionType: importedFaction,
               soldiers: importedRows.map(s => ({
                 ...s,
+                equipment: typeof s.equipment === "string" && s.equipment.trim() !== ""
+                  ? s.equipment.split(",").map(e => e.trim())
+                  : [],
                 cost: Number(s.cost) || 0,
               })),
             });
@@ -109,7 +116,7 @@ function App() {
           <option value="The Heretic Legion">The Heretic Legion</option>
           <option value="The Iron Sultanate">The Iron Sultanate</option>
         </select>
-                {warband.factionType && factionLogos[warband.factionType] ? (
+        {warband.factionType && factionLogos[warband.factionType] ? (
           <img src={factionLogos[warband.factionType]} alt={warband.factionType} className="faction-logo" />
         ) : null}
       </span>
