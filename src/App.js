@@ -13,6 +13,7 @@ import { addSoldier, setSoldier } from './state/Warband';
 import Factions, { factionTypes, NEW_ANTIOCH } from "./data/Factions";
 import ExportCSVButton from './components/ExportCSVButton';
 import ImportCSVButton from './components/ImportCSVButton';
+import { undo } from './state/Warband';
 import { EQUIPMENT } from './data/Misc';
 
 const factionLogos = {
@@ -47,9 +48,12 @@ function App() {
     soldiers: []
   });
 
+  const [history, setHistory]=useState([]);
+
   const warbandCost = warband.soldiers.reduce((sum, soldier) => sum + soldier.cost, 0);
 
   const setWarband = (value) => {
+    setHistory(prev => [...prev, warband]);
     encodeWarband(value);
     _setWarband(value);
   };
@@ -84,7 +88,8 @@ function App() {
     <div className="container">
       <img src={logo} className="logo" />
       <span className='button'><button onClick={() => { addSoldier(warband, setWarband); }}>Add Soldier</button>
-        <ImportCSVButton
+      <button onClick={() => undo(setWarband, setHistory, [...history])}>Undo</button>
+      <ImportCSVButton
           onImport={(importedRows) => {
             const importedFaction = importedRows[0]?.factionType || "";
             setWarband({
@@ -99,8 +104,7 @@ function App() {
               })),
             });
           }} />
-        <ExportCSVButton data={flattenWarbandForCSV(warband)} filename="warband.csv" />
-      </span>
+        <ExportCSVButton data={flattenWarbandForCSV(warband)} filename="warband.csv" /></span>
 
       {/* <p><b>Warband Cost</b>: {warbandCost}gc</p> */}
       <span className='faction-select'>

@@ -22,9 +22,9 @@ html, body {
 
 .button{
   display:grid;
-  grid-template-columns: 2fr 2fr 2fr;
-  gap: 5rem;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   border:none;
+  gap: 5rem;
 }
 
 .title {
