@@ -1,14 +1,19 @@
 import PropTypes from 'prop-types';
-import { ARMOUR, FIGHT, HEALTH, MOVE, SHOOT, WILL } from '../data/Misc';
+import { ABILITIES, ARMOUR, BASE, KEYWORDS, MELEE, MOVEMENT, RANGED, FACTION, EQUIPMENT } from '../data/Misc';
+import { abilities } from '../data/UnitAbilities';
+import { factionTypes } from '../data/Factions';
+import { keywordList } from '../data/Keywords';
+import { itemList } from '../data/Items';
 
 export default {
   name: PropTypes.string,
-  [MOVE]: PropTypes.number.isRequired,
-  [FIGHT]: PropTypes.number.isRequired,
-  [SHOOT]: PropTypes.number.isRequired,
+  [MOVEMENT]: PropTypes.string.isRequired,
+  [MELEE]: PropTypes.string.isRequired,
+  [RANGED]: PropTypes.string.isRequired,
   [ARMOUR]: PropTypes.number.isRequired,
-  [WILL]: PropTypes.number.isRequired,
-  [HEALTH]: PropTypes.number.isRequired,
-  itemLimit: PropTypes.number.isRequired,
-  items: PropTypes.array
+  [BASE]: PropTypes.string.isRequired,
+  [KEYWORDS]: PropTypes.arrayOf(PropTypes.oneOf(keywordList)), 
+  [FACTION]: PropTypes.arrayOf(PropTypes.oneOf(factionTypes)),
+  [ABILITIES]: PropTypes.arrayOf(PropTypes.oneOf(abilities)),
+  [EQUIPMENT]: PropTypes.arrayOf(PropTypes.oneOf(itemList))
 };

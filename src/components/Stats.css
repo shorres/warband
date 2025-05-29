@@ -7,71 +7,31 @@
   grid-column: 7 / span 2;
 }
 
-@media screen and (max-device-width:640px), screen and (max-width:640px) {
-  .statName--move {
-    overflow: hidden;
-  }
-  .statName--move:before {
-    content: "M";
-  }
-
-  .statName--fight {
-    overflow: hidden;
-  }
-  .statName--fight:before {
-    content: "F";
-  }
-
-  .statName--shoot {
-    overflow: hidden;
-  }
-  .statName--shoot:before {
-    content: "S";
-  }
-
-  .statName--armour {
-    overflow: hidden;
-  }
-  .statName--armour:before {
-    content: "A";
-  }
-
-  .statName--will {
-    overflow: hidden;
-  }
-  .statName--will:before {
-    content: "W";
-  }
-
-  .statName--health {
-    overflow: hidden;
-  }
-  .statName--health:before {
-    content: "H";
-  }
-
+.stats-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1em;
+  background: rgba(255, 255, 255, 0.863);
+}
+.stats-table th,
+.stats-table td {
+  border: 1px solid #ccc;
+  padding: 4px 8px;
+  text-align: center;
+}
+.stats-table th {
+  background: #efff1236;
 }
 
-.improve {
-  border: 0;
-  position: absolute;
-  height: 1rem;
-  background-color: transparent;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-.improve:hover {
-  color: green;
+.keyword-tooltip,
+.ability-tooltip{
+  display: inline;
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
 }
 
 .centered {
   text-align: center;
-}
-
-.xpField {
-  font-size: 1rem;
-  border: 0;
-  width: 100%;
-  text-align: right;
 }

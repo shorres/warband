@@ -1,95 +1,135 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Tooltip } from 'react-tooltip';
 
 import './Stats.css';
-import CharacterFeatures from '../data/CharacterFeatures';
-import WizardShape from '../shapes/WizardShape';
-import SoldierShape from '../shapes/SoldierShape';
-import { ARMOUR, FEATURES, FIGHT, HEALTH, LEVEL, MOVE, SHOOT, WILL, EXPERIENCE, ATTRIBUTES } from '../data/Misc';
+import CharacterFeatures from '../data/UnitAbilities';
+import characterShape from '../shapes/CharacterShape';
+import Keywords from '../data/Keywords';
+import {ARMOUR, BASE, EQUIPMENT, FACTION, KEYWORDS, MELEE, MOVEMENT, RANGED, ABILITIES } from '../data/Misc';
 
-const formatFeatures = features => features.map(feature => CharacterFeatures[feature].name).join(', ');
+const formatKeywords = (keywords, tooltipId = null) => {
+  if (!keywords) return '';
+  const keyList = Array.isArray(keywords)
+    ? keywords
+    : typeof keywords === 'string'
+      ? keywords.split(',').map(a => a.trim())
+      : [];
+
+  return keyList.map((keyword, i) => {
+    const kw = Keywords[keyword];
+    const name = kw?.name || keyword;
+    const description = kw?.description || '';
+    if (tooltipId && description) {
+      return (
+        <span
+          key={keyword + i}
+          className='keyword-tooltip'
+          data-tooltip-id={tooltipId}
+          data-tooltip-content={description}
+          style={{ textDecoration: "underline dotted", cursor: "help" }}
+        >
+          {name}
+          {i < keyList.length - 1 ? ' / ' : ''}
+        </span>
+      );
+    }
+    return (
+      <span key={keyword + i} className='keyword-tooltip'>
+        {name}
+        {i < keyList.length - 1 ? ' / ' : ''}
+      </span>
+    );
+  });
+};
+
+const formatAbilities = (abilities, tooltipId = null) => {
+  if (!abilities) return '';
+  const abilityList = Array.isArray(abilities)
+    ? abilities
+    : typeof abilities === 'string'
+      ? abilities.split(',').map(a => a.trim())
+      : [];
+
+  return abilityList.map((ability, i) => {
+    const abilityFound = CharacterFeatures[ability];
+    const name = abilityFound?.name || ability;
+    const description = abilityFound?.description || '';
+    if (tooltipId && description) {
+      return (
+        <span
+          key={ability + i}
+          className='ability-tooltip'
+          data-tooltip-id={tooltipId}
+          data-tooltip-content={description}
+          style={{ textDecoration: "underline dotted", cursor: "help" }}
+        >
+          {name}
+          {i < abilityList.length - 1 ? ' / ' : ''}
+        </span>
+      );
+    }
+    return (
+      <span key={ability + i} className='ability-tooltip'>
+        {name}
+        {i < abilityList.length - 1 ? ' / ' : ''}
+      </span>
+    );
+  });
+};
 
 const formatStat = stat => stat >= 0 ? `+${stat}` : stat === 0 ? stat : `${stat}`;
 
-const hasReachedMaximum = (attribute, value) => value >= ATTRIBUTES[attribute].max;
-
-export const Stats = ({ character, isLevellingUp, levelUp, onExperienceChange }) => {
+export const Stats = ({character}) => {
   const {
-    [MOVE]: move,
-    [FIGHT]: fight,
-    [SHOOT]: shoot,
+    [MOVEMENT]: movement,
+    [MELEE]: melee,
+    [RANGED]: ranged,
     [ARMOUR]: armour,
-    [WILL]: will,
-    [HEALTH]: health,
-    [LEVEL]: level,
-    [EXPERIENCE]: experience,
-    [FEATURES]: features,
-    isApprentice } = character;
-  return (<div className="stats">
-    <span className="highlight centered statName--move">Move</span>
-    <span className="highlight centered statName--fight">Fight</span>
-    <span className="highlight centered statName--shoot">Shoot</span>
-    <span className="highlight centered statName--armour">Armour</span>
-    <span className="highlight centered statName--will">Will</span>
-    <span className="highlight centered statName--health">Health</span>
-
-    {level && !isApprentice && <span className="highlight centered">Level</span>}
-    {typeof experience === 'number' && !isApprentice && <span className="highlight centered">Experience</span>}
-    {isApprentice && <span className="span-2"></span>}
-    {features && <span className="span-2 highlight">Features</span>}
-    <span className="centered">
-      {move}
-    </span>
-    <span className="centered">
-      {formatStat(fight)}
-      {isLevellingUp && <button
-        hidden={hasReachedMaximum(FIGHT, fight)}
-        onClick={() => levelUp(FIGHT)}
-        className="improve">&#8679;</button>}
-    </span>
-    <span className="centered">
-      {formatStat(shoot)}
-      {isLevellingUp && <button
-        hidden={hasReachedMaximum(SHOOT, shoot)}
-        onClick={() => levelUp(SHOOT)}
-        className="improve">&#8679;</button>}
-    </span>
-    <span className="centered">
-      {armour}
-    </span>
-    <span className="centered">
-      {formatStat(will)}
-      {isLevellingUp && <button
-        hidden={hasReachedMaximum(WILL, will)}
-        onClick={() => levelUp(WILL)}
-        className="improve">&#8679;</button>}
-    </span>
-    <span className="centered">
-      {health}
-      {isLevellingUp && <button
-        hidden={hasReachedMaximum(HEALTH, health)}
-        onClick={() => levelUp(HEALTH)}
-        className="improve">&#8679;</button>}
-    </span>
-    {level && !isApprentice && <span className="centered">{level}</span>}
-    {typeof experience === 'number' && !isApprentice &&
-      <span className="centered">
-        <input
-          onChange={(event) => onExperienceChange(event.target.value)}
-          type="text"
-          className="xpField"
-          value={experience} />
-      </span>}
-    {isApprentice && <span className="span-2"></span>}
-    {features && <span className="span-2">{formatFeatures(features)}</span>}
-  </div>);
+    [BASE]: base,
+    [ABILITIES]: abilities,
+    [KEYWORDS]: keywords,
+  } = character;
+  return (
+    <table className="stats-table">
+      <thead>
+        <tr>
+          <th>Movement</th>
+          <th>Melee</th>
+          <th>Ranged</th>
+          <th>Armour</th>
+          <th>Base</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{movement}</td>
+          <td>{formatStat(melee)}</td>
+          <td>{formatStat(ranged)}</td>
+          <td>{armour}</td>
+          <td>{base}</td>
+        </tr>
+        <tr>
+          <td colSpan={6}>
+            <strong>Keywords:</strong> {formatKeywords(keywords, 'keywords-tooltip')}
+            <Tooltip id='keywords-tooltip' place='bottom'/>
+          </td>
+        </tr>
+        {abilities && (
+          <tr>
+            <td colSpan={6}>
+              <strong>Abilities:</strong> {formatAbilities(abilities, 'ability-tooltip')}
+              <Tooltip id='ability-tooltip' place='bottom'/>
+            </td>
+          </tr>
+        )}
+      </tbody>
+    </table>
+  );
 };
 
 Stats.propTypes = {
-  character: PropTypes.oneOfType([WizardShape, SoldierShape]).isRequired,
-  isLevellingUp: PropTypes.bool,
-  levelUp: PropTypes.func,
-  onExperienceChange: PropTypes.func,
+  character: PropTypes.oneOfType(characterShape).isRequired,
 };
 
 export default Stats;

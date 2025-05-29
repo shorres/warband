@@ -1,6 +1,12 @@
 .characterHeader {
   display: grid;
-  grid-template-columns: 2fr 6fr 2fr 6fr;
+  grid-template-columns: 2fr 4fr 4fr 4fr 2fr; /* 2/3 for select, 1/3 for label */
+  grid-template-rows: auto auto;
+  gap: 0.5rem;
+}
+
+.characterHeader .span-full {
+  grid-column: 2 / span 3;
 }
 
 .characterHeader input {
@@ -11,12 +17,48 @@
 
 .characterHeader select {
   margin: 0;
-  font-size: 1rem;
+  font-size: 1em;
+  font-size-adjust: from-font;
   border: 0;
   width: 100%;
   height: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
-.characterHeader .span-full {
-  grid-column: 2 / span 3;
+.characterHeader .unit-type-select {
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+  align-self: center;
+}
+
+.characterHeader .name-input {
+  grid-column: 1/3;
+  grid-row: 1;
+  align-self: center;
+}
+
+.characterHeader .equipment-input {
+  grid-column: 4 / 6;
+  grid-row: 1 / 3;
+}
+
+.characterHeader .equipment-list{
+  border:none;
+}
+
+.equipment-input ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-left: 1em; /* keep bullet indent */
+  list-style: disc;
+}
+
+ul li {
+  color:rgb(255, 255, 255);
+  min-width: 5ch; /* or whatever fits your content */
+  flex: 1 1 30%;   /* 3 per row, adjust as needed */
+  max-width: 33%;
 }
