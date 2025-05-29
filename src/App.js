@@ -62,9 +62,8 @@ function App() {
     const { soldiers } = warband;
 
     // Export all stats attached to each soldier, including their keys/values
-    return soldiers.map(soldier => ({
-      factionType: soldiers.factionType,
-      ...soldier
+    return soldiers.map(({faction, Faction, ...rest}) => ({
+      ...rest
     }));
   };
 
