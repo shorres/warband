@@ -30,7 +30,6 @@ const SoldierTypeSelector = ({ soldierType, onTypeChange, factionType }) => {
 };
 
 export const CharacterHeader = ({ name, factionType, soldierType, equipment = [], onNameChange, onTypeChange, onEquipChange }) => {
-  console.log(name, factionType, soldierType);
   const factionItems = factionType ? Items[factionType] : {};
   const equipmentOptions = Object.entries(factionItems || {}).map(([key, value]) => ({
     key,

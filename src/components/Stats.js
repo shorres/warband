@@ -88,9 +88,7 @@ export const Stats = ({character}) => {
     [ARMOUR]: armour,
     [BASE]: base,
     [ABILITIES]: abilities,
-    [EQUIPMENT]: equipment,
     [KEYWORDS]: keywords,
-    [FACTION]: faction,
   } = character;
   return (
     <table className="stats-table">
