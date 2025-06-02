@@ -8,6 +8,8 @@ import courtLogo from './assets/Court_Logo.png';
 import sultanLogo from './assets/Iron_Sultante_Logo.png';
 import antiochLogo from './assets/New_Antioch_Logo.png';
 import legionLogo from './assets/Heretic_Legion_Logo.png';
+import { MenuList, MenuListItem, Separator, styleReset } from 'react95';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import Soldier from './components/Soldier';
 import { addSoldier, setSoldier } from './state/Warband';
 import Factions, { factionTypes, NEW_ANTIOCH } from "./data/Factions";
@@ -15,6 +17,33 @@ import ExportCSVButton from './components/ExportCSVButton';
 import ImportCSVButton from './components/ImportCSVButton';
 import { undo } from './state/Warband';
 import { EQUIPMENT } from './data/Misc';
+
+/* Pick a theme of your choice */
+import original from 'react95/dist/themes/original';
+
+/* Original Windows95 font (optional) */
+import ms_sans_serif from 'react95/dist/fonts/ms_sans_serif.woff2';
+import ms_sans_serif_bold from 'react95/dist/fonts/ms_sans_serif_bold.woff2';
+
+const GlobalStyles = createGlobalStyle`
+  ${styleReset}
+  @font-face {
+    font-family: 'ms_sans_serif';
+    src: url('${ms_sans_serif}') format('woff2');
+    font-weight: 400;
+    font-style: normal
+  }
+  @font-face {
+    font-family: 'ms_sans_serif';
+    src: url('${ms_sans_serif_bold}') format('woff2');
+    font-weight: bold;
+    font-style: normal
+  }
+  body, input, select, textarea {
+    font-family: 'ms_sans_serif';
+  }
+`;
+
 
 const factionLogos = {
   'The Principality of New Antioch': antiochLogo,
@@ -85,6 +114,8 @@ function App() {
 
   return (
     <div className="container">
+    <GlobalStyles />
+    <ThemeProvider theme={original}>
       <img src={logo} className="logo" />
       <span className='button'><button onClick={() => { addSoldier(warband, setWarband); }}>Add Soldier</button>
       <button onClick={() => undo(setWarband, setHistory, [...history])}>Undo</button>
@@ -128,6 +159,7 @@ function App() {
           key={soldier.uid}
           soldier={soldier}
           setSoldier={(s) => { setSoldier(warband, setWarband, s); }} />)}
+      </ThemeProvider>
     </div>
   );
 }

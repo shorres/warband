@@ -2,18 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './CharacterHeader.css';
-import Factions, { factionTypes } from "../data/Factions";
+import { Button, ScrollView, TextInput, Select, Table, GroupBox, MenuList } from 'react95';
+import styled from 'styled-components';
 import Soldiers, { soldierTypes } from '../data/Units';
 import { FACTION } from '../data/Misc';
 import Items, { itemList } from '../data/Items';
 import { Tooltip } from 'react-tooltip';
 
 const formatSoldierType = soldierType => `${Soldiers[soldierType].name}`;
-
-const FactionTypeSelector = ({ factionType, onTypeChange }) => (
-  <select onChange={(event) => onTypeChange(event.target.value)} value={factionType}>
-    {factionTypes.map(wt => <option key={wt} value={wt}>{Factions[wt].name}</option>)}
-  </select>);
 
 const SoldierTypeSelector = ({ soldierType, onTypeChange, factionType }) => {
   const allowedSoldiers = factionType
@@ -23,10 +19,12 @@ const SoldierTypeSelector = ({ soldierType, onTypeChange, factionType }) => {
       Soldiers[st][FACTION].includes(factionType)
     ) : soldierTypes;
 
-  return (
-    <select onChange={(event) => onTypeChange(event.target.value)} value={soldierType}>
-      {allowedSoldiers.map(st => <option key={st} value={st}>{formatSoldierType(st)}</option>)}
-    </select>);
+  const options = allowedSoldiers.map(st => ({
+    value: st,
+    label: formatSoldierType(st)
+  }));
+
+  return (<Select onChange={(soldierType) => onTypeChange(soldierType.value)} options={options}/>);
 };
 
 export const CharacterHeader = ({ name, factionType, soldierType, equipment = [], onNameChange, onTypeChange, onEquipChange }) => {
@@ -60,11 +58,11 @@ export const CharacterHeader = ({ name, factionType, soldierType, equipment = []
       onTypeChange={onTypeChange}
       factionType={factionType}
     /></span>
-    <span className='name-input'><input onChange={(event) => onNameChange(event.target.value)}
+    <span className='name-input'><TextInput onChange={(event) => onNameChange(event.target.value)}
       type="text"
       value={name} /></span>
     <span className='equipment-input'>
-      <input
+      <TextInput
         list="equipment-options"
         placeholder={!factionType ? 'Select a faction first' : 'Add equipment'}
         disabled={!factionType}
@@ -93,7 +91,7 @@ export const CharacterHeader = ({ name, factionType, soldierType, equipment = []
         ))}
       </datalist>
       {/* Show selected equipment with info and remove button */}
-      <ul>
+      <Table>
         {safeEquipment.map(key => {
           const item = equipmentOptions.find(opt => opt.key === key);
           if (!item) return null;
@@ -105,7 +103,7 @@ export const CharacterHeader = ({ name, factionType, soldierType, equipment = []
             item.limit ? `Limit: ${item.limit}` : null
           ].filter(Boolean).join(' | ');
           return (
-            <li key={key}>
+            <MenuList key={key}>
               <span className='equipment-list'
                 data-tooltip-id={`equipment-tooltip-${key}`}
                 data-tooltip-content={tooltipContent}
@@ -114,11 +112,11 @@ export const CharacterHeader = ({ name, factionType, soldierType, equipment = []
                 <strong>{item.name}</strong>
               </span>
               <Tooltip id={`equipment-tooltip-${key}`} place="bottom" />
-              <button type="button" onClick={() => handleRemoveEquipment(key)}>X</button>
-            </li>
+              <Button size='sm' variant='square' type="button" onClick={() => handleRemoveEquipment(key)}>x</Button>
+            </MenuList>
           );
         })}
-      </ul>
+      </Table>
     </span>
   </div>
 };
