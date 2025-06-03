@@ -51,6 +51,9 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 - [react-tooltip](https://react-tooltip.com/) (tooltips)
 - [uuid](https://www.npmjs.com/package/uuid) (unique IDs)
 
+## Notes
+Initially was a fork of https://github.com/morcmarc/frostgrave-warband . 
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
