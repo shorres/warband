@@ -15,8 +15,6 @@ import { addSoldier, setSoldier } from './state/Warband';
 import ExportCSVButton from './components/ExportCSVButton';
 import ImportCSVButton from './components/ImportCSVButton';
 import { undo } from './state/Warband';
-import Factions, {factionTypes} from './data/Factions';
-import { EQUIPMENT } from './data/Misc';
 
 /* Pick a theme of your choice */
 import vistaesqueMidnight from 'react95/dist/themes/vistaesqueMidnight';
@@ -45,7 +43,6 @@ const GlobalStyles = createGlobalStyle`
     font-family: 'ms_sans_serif';
   }
 `;
-
 
 const factionLogos = {
   'The Principality of New Antioch': antiochLogo,
