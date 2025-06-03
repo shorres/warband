@@ -8,7 +8,7 @@ import courtLogo from './assets/Court_Logo.png';
 import sultanLogo from './assets/Iron_Sultante_Logo.png';
 import antiochLogo from './assets/New_Antioch_Logo.png';
 import legionLogo from './assets/Heretic_Legion_Logo.png';
-import { styleReset, Button, Select } from 'react95';
+import { styleReset, Button, Select, Window, WindowHeader, Toolbar } from 'react95';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import Soldier from './components/Soldier';
 import { addSoldier, setSoldier } from './state/Warband';
@@ -18,6 +18,7 @@ import { undo } from './state/Warband';
 
 /* Pick a theme of your choice */
 import vistaesqueMidnight from 'react95/dist/themes/vistaesqueMidnight';
+import original from 'react95/dist/themes/original';
 
 /* Original Windows95 font (optional) */
 import ms_sans_serif from 'react95/dist/fonts/ms_sans_serif.woff2';
@@ -123,10 +124,16 @@ function App() {
   return (
     <div className="container">
     <GlobalStyles />
-    <ThemeProvider theme={vistaesqueMidnight}>
-      <img src={logo} className="logo" />
-      <span className='button'><Button onClick={() => { addSoldier(warband, setWarband); }}>Add Unit</Button>
-      <Button onClick={() => undo(warband, setWarband)}>Undo</Button>
+    <ThemeProvider theme={original}>
+      <Window resizable>
+        <WindowHeader className='window-title'>
+          <span>warband.exe</span>
+          <Button> 
+          <span className='close-icon'>x</span>
+          </Button>
+        </WindowHeader>
+      <Toolbar><Button  variant='menu' onClick={() => { addSoldier(warband, setWarband); }}>Add Unit</Button>
+      <Button variant='menu' onClick={() => undo(warband, setWarband)}>Undo</Button>
       <ImportCSVButton
           onImport={(importedRows) => {
             const importedFaction = importedRows[0]?.factionType || "";
@@ -142,9 +149,10 @@ function App() {
               })),
             });
           }} />
-        <ExportCSVButton data={flattenWarbandForCSV(warband)} filename={warband.factionType + ".csv"} /></span>
-
+        <ExportCSVButton data={flattenWarbandForCSV(warband)} filename={warband.factionType + ".csv"} />
+        </Toolbar>
       {/* <p><b>Warband Cost</b>: {warbandCost}gc</p> */}
+      <img src={logo} className="logo" />
       <span className='faction-select'>
         <Select className='faction-input'
           options={options}
@@ -162,6 +170,7 @@ function App() {
           key={soldier.uid}
           soldier={soldier}
           setSoldier={(s) => { setSoldier(warband, setWarband, s); }} />)}
+          </Window>
       </ThemeProvider>
     </div>
   );

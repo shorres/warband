@@ -11,7 +11,7 @@ const ExportCSVButton = ({ data, filename = "export.csv" }) => {
   };
 
   return (
-    <Button onClick={handleExport}>
+    <Button variant="menu" onClick={handleExport}>
       Export
     </Button>
   );

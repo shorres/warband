@@ -26,7 +26,7 @@ const ImportCSVButton = ({ onImport }) => {
 
   return (
     <>
-      <Button type="button" onClick={handleButtonClick} style={{ cursor: "pointer" }}>
+      <Button variant="menu" type="button" onClick={handleButtonClick} style={{ cursor: "pointer" }}>
         Import
       </Button>
       <input
