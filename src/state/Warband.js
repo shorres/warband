@@ -60,9 +60,8 @@ export const setSoldier = (warband, setWarband, newSoldier) => {
   setWarband({ ...warband });
 };
 
-export const undo = (setWarband, setHistory, history) => {
-  if(history.length != 0){
-  setWarband({ ...history.pop() });
-  setHistory(history);
+export const undo = (warband, setWarband) => {
+  if(warband.soldiers.length > 0){
+  setWarband({...warband, soldiers: warband.soldiers.slice(0,-1)});
   }
-}
+};
