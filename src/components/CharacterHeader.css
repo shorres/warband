@@ -50,7 +50,9 @@
 }
 
 .characterHeader .equipment-list{
+  display:flex;
   border:none;
+  text-overflow: ellipsis;
 }
 
 .equipment-input ul {

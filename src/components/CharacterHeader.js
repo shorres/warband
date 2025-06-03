@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './CharacterHeader.css';
-import { Button, ScrollView, TextInput, Select, Table, GroupBox, MenuList } from 'react95';
+import { Button, TextInput, Select, Table, MenuList, Tooltip } from 'react95';
 import styled from 'styled-components';
 import Soldiers, { soldierTypes } from '../data/Units';
 import { FACTION } from '../data/Misc';
 import Items, { itemList } from '../data/Items';
-import { Tooltip } from 'react-tooltip';
+//import { Tooltip } from 'react-tooltip';
 
 const formatSoldierType = soldierType => `${Soldiers[soldierType].name}`;
 
@@ -24,7 +24,7 @@ const SoldierTypeSelector = ({ soldierType, onTypeChange, factionType }) => {
     label: formatSoldierType(st)
   }));
 
-  return (<Select onChange={(soldierType) => onTypeChange(soldierType.value)} value={soldierType} options={options} defaultValue={1}/>);
+  return (<Select onChange={(soldierType) => onTypeChange(soldierType.value)} value={soldierType} options={options} defaultValue={1} />);
 };
 
 export const CharacterHeader = ({ name, factionType, soldierType, equipment = [], onNameChange, onTypeChange, onEquipChange }) => {
@@ -102,16 +102,20 @@ export const CharacterHeader = ({ name, factionType, soldierType, equipment = []
             item.modifiers ? `Modifiers: ${item.modifiers}` : null,
             item.limit ? `Limit: ${item.limit}` : null
           ].filter(Boolean).join(' | ');
+
+          if(item.name.length >= 17){
+            item.name = item.name.slice(0, -5) + '...'
+          }
+
           return (
-            <MenuList key={key}>
-              <span className='equipment-list'
-                data-tooltip-id={`equipment-tooltip-${key}`}
-                data-tooltip-content={tooltipContent}
-                style={{ textDecoration: "underline dotted", cursor: "help" }}
-              >
-                <strong>{item.name}</strong>
-              </span>
-              <Tooltip id={`equipment-tooltip-${key}`} place="bottom" />
+            <MenuList className='equipment-list' key={key}>
+              <Tooltip text={tooltipContent} position="bottom">
+                <span className='equipment-list'
+                  style={{ textDecoration: "underline dotted", cursor: "help" }}
+                >
+                  <strong>{item.name}</strong>
+                </span>
+              </Tooltip>
               <Button size='sm' variant='square' type="button" onClick={() => handleRemoveEquipment(key)}>x</Button>
             </MenuList>
           );
