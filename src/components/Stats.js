@@ -27,7 +27,7 @@ const formatKeywords = (keywords, tooltipId = null) => {
           key={keyword + i}
           text={description}
           position="bottom"
-          style={{width:'30em', whiteSpace:'pre'}}
+          style={{width:'30em', whiteSpace:'pre', color:'black'}}
         >
           <span
             className='keyword-tooltip'
@@ -65,7 +65,7 @@ const formatAbilities = (abilities = null) => {
           key={ability + i}
           text={description}
           position="bottom"
-          style={{width:'30em', whiteSpace:'pre-wrap'}}
+          style={{width:'30em', whiteSpace:'pre-wrap', color:'black'}}
         >
           <span
             className='ability-tooltip'

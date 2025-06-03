@@ -20,6 +20,17 @@
   text-align: center;
 }
 
+.react95__tooltip {
+  color: #222 !important;           /* dark text */
+  background: #fffbe6 !important;   /* light tan background */
+  border: 1px solid #c2b280 !important;
+  box-shadow: 2px 2px 8px #0002 !important;
+  max-width: 320px !important;
+  white-space: pre-line !important;
+  word-break: break-word !important;
+  z-index: 9999 !important;
+  font-size: 1em !important;
+}
 
 .centered {
   text-align: center;
