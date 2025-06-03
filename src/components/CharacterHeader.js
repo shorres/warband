@@ -103,7 +103,7 @@ export const CharacterHeader = ({ name, factionType, soldierType, equipment = []
             item.limit ? `Limit: ${item.limit}` : null
           ].filter(Boolean).join(' | ');
 
-          if(item.name.length >= 17){
+          if(item.name.length >= 18){
             item.name = item.name.slice(0, -5) + '...'
           }
 
