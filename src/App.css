@@ -25,6 +25,8 @@ html, body {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   border:none;
   gap: 5rem;
+  text-align: center;
+  font-size: 1em;
 }
 
 .title {
