@@ -142,7 +142,7 @@ function App() {
               })),
             });
           }} />
-        <ExportCSVButton data={flattenWarbandForCSV(warband)} filename="warband.csv" /></span>
+        <ExportCSVButton data={flattenWarbandForCSV(warband)} filename={warband.factionType + ".csv"} /></span>
 
       {/* <p><b>Warband Cost</b>: {warbandCost}gc</p> */}
       <span className='faction-select'>
