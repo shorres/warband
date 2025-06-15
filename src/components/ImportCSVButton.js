@@ -1,5 +1,6 @@
 import React from "react";
 import Papa from "papaparse";
+import { Button } from "react95";
 
 const ImportCSVButton = ({ onImport }) => {
   const handleFileChange = (e) => {
@@ -25,9 +26,9 @@ const ImportCSVButton = ({ onImport }) => {
 
   return (
     <>
-      <button type="button" onClick={handleButtonClick} style={{ cursor: "pointer" }}>
-        Import CSV
-      </button>
+      <Button variant="menu" type="button" onClick={handleButtonClick} style={{ cursor: "pointer" }}>
+        Import
+      </Button>
       <input
         ref={fileInputRef}
         type="file"

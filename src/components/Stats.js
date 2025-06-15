@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Tooltip } from 'react-tooltip';
+//import { Tooltip } from 'react-tooltip';
+import { Table, TableDataCell, TableHeadCell, TableBody, TableHead, TableRow, Tooltip } from 'react95';
 
 import './Stats.css';
 import CharacterFeatures from '../data/UnitAbilities';
@@ -20,30 +21,33 @@ const formatKeywords = (keywords, tooltipId = null) => {
     const kw = Keywords[keyword];
     const name = kw?.name || keyword;
     const description = kw?.description || '';
-    if (tooltipId && description) {
+    if (description) {
       return (
-        <span
+        <Tooltip 
           key={keyword + i}
-          className='keyword-tooltip'
-          data-tooltip-id={tooltipId}
-          data-tooltip-content={description}
-          style={{ textDecoration: "underline dotted", cursor: "help" }}
+          text={description}
+          position="bottom"
+          style={{width:'30em', whiteSpace:'pre', color:'black'}}
         >
-          {name}
-          {i < keyList.length - 1 ? ' / ' : ''}
-        </span>
+          <span
+            className='keyword-tooltip'
+            style={{ textDecoration: "underline dotted", cursor: "help"}}
+          >
+            {name}
+            {i < keyList.length - 1 ? ' / ' : ''}
+          </span>
+        </Tooltip>
       );
     }
     return (
       <span key={keyword + i} className='keyword-tooltip'>
         {name}
-        {i < keyList.length - 1 ? ' / ' : ''}
       </span>
     );
   });
 };
 
-const formatAbilities = (abilities, tooltipId = null) => {
+const formatAbilities = (abilities = null) => {
   if (!abilities) return '';
   const abilityList = Array.isArray(abilities)
     ? abilities
@@ -55,24 +59,27 @@ const formatAbilities = (abilities, tooltipId = null) => {
     const abilityFound = CharacterFeatures[ability];
     const name = abilityFound?.name || ability;
     const description = abilityFound?.description || '';
-    if (tooltipId && description) {
+    if (description) {
       return (
-        <span
+        <Tooltip
           key={ability + i}
-          className='ability-tooltip'
-          data-tooltip-id={tooltipId}
-          data-tooltip-content={description}
-          style={{ textDecoration: "underline dotted", cursor: "help" }}
+          text={description}
+          position="bottom"
+          style={{width:'30em', whiteSpace:'pre-wrap', color:'black'}}
         >
-          {name}
-          {i < abilityList.length - 1 ? ' / ' : ''}
-        </span>
+          <span
+            className='ability-tooltip'
+            style={{ textDecoration: "underline dotted", cursor: "help"}}
+          >
+            {name}
+            {i < abilities.length - 1 ? ' / ' : ''}
+          </span>
+        </Tooltip>
       );
     }
     return (
       <span key={ability + i} className='ability-tooltip'>
         {name}
-        {i < abilityList.length - 1 ? ' / ' : ''}
       </span>
     );
   });
@@ -91,40 +98,38 @@ export const Stats = ({character}) => {
     [KEYWORDS]: keywords,
   } = character;
   return (
-    <table className="stats-table">
-      <thead>
-        <tr>
-          <th>Movement</th>
-          <th>Melee</th>
-          <th>Ranged</th>
-          <th>Armour</th>
-          <th>Base</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>{movement}</td>
-          <td>{formatStat(melee)}</td>
-          <td>{formatStat(ranged)}</td>
-          <td>{armour}</td>
-          <td>{base}</td>
-        </tr>
-        <tr>
-          <td colSpan={6}>
+    <Table className="stats-table">
+      <TableHead>
+        <TableRow>
+          <TableHeadCell>Movement</TableHeadCell>
+          <TableHeadCell>Melee</TableHeadCell>
+          <TableHeadCell>Ranged</TableHeadCell>
+          <TableHeadCell>Armour</TableHeadCell>
+          <TableHeadCell>Base</TableHeadCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        <TableRow>
+          <TableDataCell>{movement}</TableDataCell>
+          <TableDataCell>{formatStat(melee)}</TableDataCell>
+          <TableDataCell>{formatStat(ranged)}</TableDataCell>
+          <TableDataCell>{armour}</TableDataCell>
+          <TableDataCell>{base}</TableDataCell>
+        </TableRow>
+        <TableRow>
+          <TableDataCell colSpan={6} >
             <strong>Keywords:</strong> {formatKeywords(keywords, 'keywords-tooltip')}
-            <Tooltip id='keywords-tooltip' place='bottom'/>
-          </td>
-        </tr>
+          </TableDataCell>
+        </TableRow>
         {abilities && (
-          <tr>
-            <td colSpan={6}>
+          <TableRow>
+            <TableDataCell colSpan={6}>
               <strong>Abilities:</strong> {formatAbilities(abilities, 'ability-tooltip')}
-              <Tooltip id='ability-tooltip' place='bottom'/>
-            </td>
-          </tr>
+            </TableDataCell>
+          </TableRow>
         )}
-      </tbody>
-    </table>
+      </TableBody>
+    </Table>
   );
 };
 

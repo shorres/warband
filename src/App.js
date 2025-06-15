@@ -8,13 +8,42 @@ import courtLogo from './assets/Court_Logo.png';
 import sultanLogo from './assets/Iron_Sultante_Logo.png';
 import antiochLogo from './assets/New_Antioch_Logo.png';
 import legionLogo from './assets/Heretic_Legion_Logo.png';
+import { styleReset, Button, Select, Window, WindowHeader, Toolbar } from 'react95';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import Soldier from './components/Soldier';
 import { addSoldier, setSoldier } from './state/Warband';
-import Factions, { factionTypes, NEW_ANTIOCH } from "./data/Factions";
 import ExportCSVButton from './components/ExportCSVButton';
 import ImportCSVButton from './components/ImportCSVButton';
 import { undo } from './state/Warband';
-import { EQUIPMENT } from './data/Misc';
+
+/* Pick a theme of your choice */
+import vistaesqueMidnight from 'react95/dist/themes/vistaesqueMidnight';
+import original from 'react95/dist/themes/original';
+
+/* Original Windows95 font (optional) */
+import ms_sans_serif from 'react95/dist/fonts/ms_sans_serif.woff2';
+import ms_sans_serif_bold from 'react95/dist/fonts/ms_sans_serif_bold.woff2';
+
+const GlobalStyles = createGlobalStyle`
+  ${styleReset}
+  @font-face {
+    font-family: 'ms_sans_serif';
+    src: url('${ms_sans_serif}') format('woff2');
+    font-weight: 400;
+    font-style: normal
+    font-size: 1em
+  }
+  @font-face {
+    font-family: 'ms_sans_serif';
+    src: url('${ms_sans_serif_bold}') format('woff2');
+    font-weight: bold;
+    font-style: normal
+    font-size: 1em
+  }
+  body, input, select, textarea {
+    font-family: 'ms_sans_serif';
+  }
+`;
 
 const factionLogos = {
   'The Principality of New Antioch': antiochLogo,
@@ -38,6 +67,15 @@ const decodeWarband = (encoded, setWarband) => {
     console.error(e);
   }
 }
+
+const options = [
+  { value: "", label: "Select Faction" },
+  { value: "The Principality of New Antioch", label: "The Principality of New Antioch" },
+  { value: "The Court of the Seven Headed Serpent", label: "The Court of the Seven Headed Serpent" },
+  { value: "Trench Pilgrims", label: "Trench Pilgrims" },
+  { value: "The Cult of the Black Grail", label: "The Cult of the Black Grail" },
+  { value: "The Heretic Legion", label: "The Heretic Legion" }
+]
 
 function App() {
 
@@ -85,9 +123,17 @@ function App() {
 
   return (
     <div className="container">
-      <img src={logo} className="logo" />
-      <span className='button'><button onClick={() => { addSoldier(warband, setWarband); }}>Add Soldier</button>
-      <button onClick={() => undo(setWarband, setHistory, [...history])}>Undo</button>
+    <GlobalStyles />
+    <ThemeProvider theme={original}>
+      <Window resizable>
+        <WindowHeader className='window-title'>
+          <span>warband.exe</span>
+          <Button> 
+          <span className='close-icon'>x</span>
+          </Button>
+        </WindowHeader>
+      <Toolbar><Button  variant='menu' onClick={() => { addSoldier(warband, setWarband); }}>Add Unit</Button>
+      <Button variant='menu' onClick={() => undo(warband, setWarband)}>Undo</Button>
       <ImportCSVButton
           onImport={(importedRows) => {
             const importedFaction = importedRows[0]?.factionType || "";
@@ -103,22 +149,18 @@ function App() {
               })),
             });
           }} />
-        <ExportCSVButton data={flattenWarbandForCSV(warband)} filename="warband.csv" /></span>
-
+        <ExportCSVButton data={flattenWarbandForCSV(warband)} filename={warband.factionType + ".csv"} />
+        </Toolbar>
       {/* <p><b>Warband Cost</b>: {warbandCost}gc</p> */}
+      <img src={logo} className="logo" />
       <span className='faction-select'>
-        <select className='faction-input'
+        <Select className='faction-input'
+          options={options}
           value={warband.factionType}
-          onChange={e => setWarbandFaction(e.target.value)}
+          onChange={(factionType) => setWarbandFaction(factionType.value)}
+          defaultValue={0}
         >
-          <option value="">Select Faction</option>
-          <option value="The Principality of New Antioch">The Principality of New Antioch</option>
-          <option value="The Court of the Seven Headed Serpent">The Court of the Seven Headed Serpent</option>
-          <option value="Trench Pilgrims">Trench Pilgrims</option>
-          <option value="The Cult of the Black Grail">The Cult of the Black Grail</option>
-          <option value="The Heretic Legion">The Heretic Legion</option>
-          <option value="The Iron Sultanate">The Iron Sultanate</option>
-        </select>
+        </Select>
         {warband.factionType && factionLogos[warband.factionType] ? (
           <img src={factionLogos[warband.factionType]} alt={warband.factionType} className="faction-logo" />
         ) : null}
@@ -128,6 +170,8 @@ function App() {
           key={soldier.uid}
           soldier={soldier}
           setSoldier={(s) => { setSoldier(warband, setWarband, s); }} />)}
+          </Window>
+      </ThemeProvider>
     </div>
   );
 }
