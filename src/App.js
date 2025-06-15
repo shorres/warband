@@ -125,7 +125,7 @@ function App() {
     <div className="container">
     <GlobalStyles />
     <ThemeProvider theme={original}>
-      <Window resizable>
+      <Window resizable className='responsive-window'>
         <WindowHeader className='window-title'>
           <span>warband.exe</span>
           <Button> 
