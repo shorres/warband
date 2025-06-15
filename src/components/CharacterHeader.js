@@ -24,7 +24,15 @@ const SoldierTypeSelector = ({ soldierType, onTypeChange, factionType }) => {
     label: formatSoldierType(st)
   }));
 
-  return (<Select onChange={(soldierType) => onTypeChange(soldierType.value)} value={soldierType} options={options} defaultValue={1} />);
+  return (
+  <Select 
+    onChange={(soldierType) => onTypeChange(soldierType.value)} 
+    value={soldierType} 
+    options={options} 
+    defaultValue={1}
+    className='unit-picker'
+    />
+  );
 };
 
 export const CharacterHeader = ({ name, factionType, soldierType, equipment = [], onNameChange, onTypeChange, onEquipChange }) => {

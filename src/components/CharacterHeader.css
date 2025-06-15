@@ -32,8 +32,15 @@
   grid-column: 3 / 4;
   grid-row: 1 / 2;
   align-self: center;
+  margin: 0 auto;
   border:none;
   width:max-content;
+}
+
+.characterHeader .unit-type-select .unit-picker{
+  min-width: 160px;
+  max-width: 240px;
+  width: 100%;
 }
 
 .characterHeader .name-input {
