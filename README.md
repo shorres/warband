@@ -50,6 +50,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 - [file-saver](https://github.com/eligrey/FileSaver.js/) (file downloads)
 - [react-tooltip](https://react-tooltip.com/) (tooltips)
 - [uuid](https://www.npmjs.com/package/uuid) (unique IDs)
+- React95 / styledcomponents
 
 ## Notes
 Initially was a fork of https://github.com/morcmarc/frostgrave-warband . 
