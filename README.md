@@ -26,9 +26,9 @@ npm install
 Start the development server:
 
 ```sh
-yarn start
+yarn dev
 # or
-npm start
+npm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
