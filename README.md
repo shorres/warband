@@ -44,15 +44,16 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Dependencies
 
-- React 19
+- React 17 (React95 requires ReactDOM)
 - PropTypes
 - [PapaParse](https://www.papaparse.com/) (CSV import/export)
 - [file-saver](https://github.com/eligrey/FileSaver.js/) (file downloads)
 - [react-tooltip](https://react-tooltip.com/) (tooltips)
 - [uuid](https://www.npmjs.com/package/uuid) (unique IDs)
+- [React95](https://github.com/react95-io/React95)
 
 ## Notes
-Initially was a fork of https://github.com/morcmarc/frostgrave-warband . 
+Initially was a fork of https://github.com/morcmarc/frostgrave-warband. 
 
 ## License
 
