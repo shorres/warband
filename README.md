@@ -2,6 +2,8 @@
 
 A web-based builder for creating and managing warbands for the Trench Crusade setting. Easily assemble, customize, and export your warband rosters.
 
+![firefox_bEqotDjLJm](https://github.com/user-attachments/assets/9142141a-b2ac-43e4-a2cf-406013b500da)
+
 ## Getting Started
 
 ### Prerequisites
