@@ -11,6 +11,13 @@ html, body {
   margin: 0 auto;
 }
 
+.logo{
+  width: 450px;
+  height: auto;
+  display: block;
+  margin: 0 auto 1rem auto;
+}
+
 .container {
   width: 50%;
   margin: 1rem 25%;
@@ -25,6 +32,10 @@ html, body {
   .responsive-window{
     min-width: 0;
     max-width: 100vw;
+  }
+
+  .logo{
+    width:90%;
   }
 }
 
@@ -66,13 +77,6 @@ body{
   background-repeat: repeat;
   background-position: center center;
   min-height: 100vh;
-}
-
-.logo{
-  width: 450px;
-  height: auto;
-  display: block;
-  margin: 0 auto 1rem auto;
 }
 
 .window-title {

@@ -134,7 +134,7 @@ export const Stats = ({character}) => {
 };
 
 Stats.propTypes = {
-  character: PropTypes.oneOfType(characterShape).isRequired,
+  character: PropTypes.shape(characterShape).isRequired,
 };
 
 export default Stats;
