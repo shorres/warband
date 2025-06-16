@@ -117,7 +117,10 @@ function App() {
   };
 
   if (firstLoad) {
-    decodeWarband(window.location.hash?.replace('#', ''), _setWarband);
+    const hash = window.location.hash?.replace('#', '');
+    if (hash) {
+      decodeWarband(hash, _setWarband);
+    }
     setFirstLoad(false);
   }
 
