@@ -61,7 +61,7 @@ span {
 
 body{
   background-image:
-    url('../public/artillery+battery_posterized.png');
+    url('./public/artillery+battery_posterized.png');
   background-size: cover;
   background-repeat: repeat;
   background-position: center center;
