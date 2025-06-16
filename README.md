@@ -44,7 +44,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Dependencies
 
-- React 19
+- React 17 (using React95, requires ReactDOM instead of Root)
 - PropTypes
 - [PapaParse](https://www.papaparse.com/) (CSV import/export)
 - [file-saver](https://github.com/eligrey/FileSaver.js/) (file downloads)
